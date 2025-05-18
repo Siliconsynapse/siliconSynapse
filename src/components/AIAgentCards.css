@@ -1,0 +1,354 @@
+/* AI Agent Cards Styling */
+.agents-section {
+  background-color: var(--dark-bg, #0f172a);
+  position: relative;
+  overflow: hidden;
+  padding: 5rem 0;
+}
+
+.agents-section::before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background: 
+    radial-gradient(circle at 20% 20%, rgba(59, 130, 246, 0.1) 0%, transparent 30%),
+    radial-gradient(circle at 80% 80%, rgba(16, 185, 129, 0.1) 0%, transparent 30%);
+  z-index: 0;
+}
+
+.gradient-heading {
+  background: linear-gradient(135deg, #3b82f6, #10b981);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Card Container */
+.agent-card {
+  position: relative;
+  height: 400px;
+  perspective: 1000px;
+  margin-bottom: 30px;
+}
+
+/* Card Inner Container - Handles the flip */
+.agent-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transform-style: preserve-3d;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+/* Hover Effect - The card flip */
+.agent-card:hover .agent-card-inner {
+  transform: rotateY(180deg);
+}
+
+/* Front and Back Card Face Styling */
+.agent-card-front,
+.agent-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+  color: white;
+  overflow: hidden;
+}
+
+/* Front Card Styling */
+.agent-card-front {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.agent-card-front::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0) 100%);
+  z-index: -1;
+}
+
+/* Back Card Styling */
+.agent-card-back {
+  background: rgba(15, 23, 42, 0.95);
+  transform: rotateY(180deg);
+  border: 1px solid rgba(59, 130, 246, 0.3);
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 2.5rem;
+}
+
+/* Agent Icon */
+.agent-icon-wrapper {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+  font-size: 2rem;
+  position: relative;
+  z-index: 2;
+  transition: all 0.3s ease;
+}
+
+.agent-card:hover .agent-icon-wrapper {
+  transform: scale(1.1);
+}
+
+/* Agent Title */
+.agent-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  position: relative;
+}
+
+/* Agent Description */
+.agent-description {
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+  flex-grow: 1;
+}
+
+/* Agent Features */
+.agent-features {
+  list-style: none;
+  padding-left: 0;
+  margin-bottom: 2rem;
+  text-align: left;
+}
+
+.agent-features li {
+  margin-bottom: 0.75rem;
+  font-size: 0.95rem;
+  display: flex;
+  align-items: flex-start;
+}
+
+.agent-features li i {
+  margin-right: 0.5rem;
+  margin-top: 0.25rem;
+}
+
+/* Agent Button */
+.agent-btn {
+  padding: 0.75rem 2rem;
+  font-weight: 600;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  border: none;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.agent-btn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(45deg, rgba(59, 130, 246, 0.5), rgba(16, 185, 129, 0.5));
+  z-index: -1;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.5s ease;
+}
+
+.agent-btn:hover::before {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+/* Colors for different agents */
+.agent-card.blue .agent-icon-wrapper {
+  background: linear-gradient(135deg, #3b82f6, #60a5fa);
+  box-shadow: 0 5px 15px rgba(59, 130, 246, 0.4);
+}
+
+.agent-card.teal .agent-icon-wrapper {
+  background: linear-gradient(135deg, #14b8a6, #5eead4);
+  box-shadow: 0 5px 15px rgba(20, 184, 166, 0.4);
+}
+
+.agent-card.purple .agent-icon-wrapper {
+  background: linear-gradient(135deg, #8b5cf6, #c4b5fd);
+  box-shadow: 0 5px 15px rgba(139, 92, 246, 0.4);
+}
+
+.agent-card.green .agent-icon-wrapper {
+  background: linear-gradient(135deg, #10b981, #6ee7b7);
+  box-shadow: 0 5px 15px rgba(16, 185, 129, 0.4);
+}
+
+.agent-card.indigo .agent-icon-wrapper {
+  background: linear-gradient(135deg, #6366f1, #a5b4fc);
+  box-shadow: 0 5px 15px rgba(99, 102, 241, 0.4);
+}
+
+.agent-card.orange .agent-icon-wrapper {
+  background: linear-gradient(135deg, #f97316, #fdba74);
+  box-shadow: 0 5px 15px rgba(249, 115, 22, 0.4);
+}
+
+.agent-card.red .agent-icon-wrapper {
+  background: linear-gradient(135deg, #ef4444, #fca5a5);
+  box-shadow: 0 5px 15px rgba(239, 68, 68, 0.4);
+}
+
+.agent-card.pink .agent-icon-wrapper {
+  background: linear-gradient(135deg, #ec4899, #f9a8d4);
+  box-shadow: 0 5px 15px rgba(236, 72, 153, 0.4);
+}
+
+.agent-card.yellow .agent-icon-wrapper {
+  background: linear-gradient(135deg, #eab308, #fde047);
+  box-shadow: 0 5px 15px rgba(234, 179, 8, 0.4);
+}
+
+/* Color-specific borders for back faces */
+.agent-card.blue .agent-card-back {
+  border-color: rgba(59, 130, 246, 0.3);
+}
+
+.agent-card.teal .agent-card-back {
+  border-color: rgba(20, 184, 166, 0.3);
+}
+
+.agent-card.purple .agent-card-back {
+  border-color: rgba(139, 92, 246, 0.3);
+}
+
+.agent-card.green .agent-card-back {
+  border-color: rgba(16, 185, 129, 0.3);
+}
+
+.agent-card.indigo .agent-card-back {
+  border-color: rgba(99, 102, 241, 0.3);
+}
+
+.agent-card.orange .agent-card-back {
+  border-color: rgba(249, 115, 22, 0.3);
+}
+
+.agent-card.red .agent-card-back {
+  border-color: rgba(239, 68, 68, 0.3);
+}
+
+.agent-card.pink .agent-card-back {
+  border-color: rgba(236, 72, 153, 0.3);
+}
+
+.agent-card.yellow .agent-card-back {
+  border-color: rgba(234, 179, 8, 0.3);
+}
+
+/* Animation for cards appearing */
+@keyframes cardFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in {
+  animation: cardFadeIn 0.6s ease forwards;
+  animation-delay: calc(var(--animation-order, 0) * 0.1s);
+  opacity: 0;
+}
+
+/* Glowing effect on hover */
+.agent-card::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 16px;
+  box-shadow: 0 0 0 0 transparent;
+  transition: box-shadow 0.5s ease;
+  z-index: -1;
+}
+
+.agent-card:hover::after {
+  box-shadow: 0 0 30px 5px rgba(59, 130, 246, 0.2);
+}
+
+/* Responsive adjustments */
+@media (max-width: 992px) {
+  .agent-card {
+    height: 380px;
+  }
+  
+  .agent-features li {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .agent-card {
+    height: 340px;
+    margin-bottom: 20px;
+  }
+  
+  .agent-icon-wrapper {
+    width: 70px;
+    height: 70px;
+    font-size: 1.8rem;
+  }
+  
+  .agent-title {
+    font-size: 1.3rem;
+  }
+  
+  .agent-description {
+    font-size: 0.9rem;
+  }
+}
+
+/* Pulse animation for agent icons on hover */
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.agent-card:hover .agent-icon-wrapper i {
+  animation: pulse 1.5s infinite ease-in-out;
+}
