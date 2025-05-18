@@ -168,7 +168,7 @@ const Footer = () => {
           </div>
         </div>
         
-        <hr className="my-4 border-secondary" />
+        {/* Removed hr separator for smoother section transitions */}
         
         <div className="row align-items-center">
           <div className="col-md-6 text-center text-md-start">

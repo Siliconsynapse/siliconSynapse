@@ -115,7 +115,7 @@ section {
 .navbar {
   background: rgba(9, 9, 15, 0.8);
   backdrop-filter: blur(10px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  /* Removed border for smooth section transitions */
   padding: 1rem 0;
   position: fixed;
   top: 0;
@@ -307,7 +307,7 @@ section {
 /* Footer styles */
 .footer-section {
   background: #09090f;
-  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  /* Removed separator line between sections */
 }
 
 .newsletter-card {
