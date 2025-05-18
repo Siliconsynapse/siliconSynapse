@@ -26,12 +26,12 @@ const AIAgentServices = ({ onAgentClick }) => {
     };
   }, []);
 
-  // Enhanced AI agents with detailed capabilities
+  // Available AI agents that we offer
   const aiAgents = [
     {
       icon: 'fa-pencil-alt',
       title: 'Content Creator',
-      description: 'AI-powered content generator that creates engaging blog posts, articles, and marketing copy tailored to your brand voice.',
+      description: 'Access our content creation agent to generate engaging blog posts, articles, and marketing copy for your brand.',
       features: [
         'SEO-optimized blog posts',
         'Marketing copy generation',
@@ -43,7 +43,7 @@ const AIAgentServices = ({ onAgentClick }) => {
     {
       icon: 'fa-file-alt',
       title: 'Resume ATS Optimizer',
-      description: 'Enhance your resume\'s visibility and ranking in Applicant Tracking Systems with our AI-powered optimization tool.',
+      description: 'Improve your resume\'s performance through our ATS Optimizer agent, designed to increase visibility with hiring managers.',
       features: [
         'Keyword optimization',
         'Format customization',
@@ -55,7 +55,7 @@ const AIAgentServices = ({ onAgentClick }) => {
     {
       icon: 'fa-chart-line',
       title: 'Market Analyst',
-      description: 'Advanced market analysis agent that provides actionable insights and forecasts based on real-time market data.',
+      description: 'Leverage our market analysis agent to gain actionable insights and forecasts based on real-time market data.',
       features: [
         'Trend forecasting',
         'Competitive analysis',
@@ -67,7 +67,7 @@ const AIAgentServices = ({ onAgentClick }) => {
     {
       icon: 'fa-comments',
       title: 'Customer Support Bot',
-      description: 'Intelligent virtual assistant that handles customer inquiries, resolves common issues, and maintains customer satisfaction.',
+      description: 'Deploy our intelligent virtual assistant to handle customer inquiries, resolve issues, and enhance customer satisfaction.',
       features: [
         '24/7 automated support',
         'Multi-language capabilities',
@@ -79,7 +79,7 @@ const AIAgentServices = ({ onAgentClick }) => {
     {
       icon: 'fa-code',
       title: 'Code Assistant',
-      description: 'AI coding partner that helps generate code, debug issues, and improve code quality across multiple programming languages.',
+      description: 'Boost your development team with our AI coding assistant to generate code, debug issues, and improve code quality.',
       features: [
         'Code generation',
         'Bug detection',
@@ -91,7 +91,7 @@ const AIAgentServices = ({ onAgentClick }) => {
     {
       icon: 'fa-language',
       title: 'Language Translator',
-      description: 'Advanced translation agent that accurately translates content while preserving context, tone, and cultural nuances.',
+      description: 'Access our advanced translation agent for accurately translating content while preserving context, tone, and cultural nuances.',
       features: [
         'Real-time translation',
         'Document translation',
@@ -103,7 +103,7 @@ const AIAgentServices = ({ onAgentClick }) => {
     {
       icon: 'fa-tasks',
       title: 'Project Manager',
-      description: 'AI project management assistant that tracks progress, identifies potential issues, and helps teams meet deadlines.',
+      description: 'Optimize your workflow with our AI project management assistant to track progress, identify issues, and meet deadlines.',
       features: [
         'Task scheduling',
         'Resource allocation',
@@ -115,7 +115,7 @@ const AIAgentServices = ({ onAgentClick }) => {
     {
       icon: 'fa-images',
       title: 'Visual Designer',
-      description: 'Creative AI agent that generates images, graphics, and visual assets based on your requirements and brand guidelines.',
+      description: 'Create professional visual assets with our AI design agent that generates images and graphics based on your requirements.',
       features: [
         'Image generation',
         'Design customization',
@@ -127,7 +127,7 @@ const AIAgentServices = ({ onAgentClick }) => {
     {
       icon: 'fa-search',
       title: 'Research Assistant',
-      description: 'Comprehensive research agent that gathers, analyzes, and summarizes information from diverse sources on any topic.',
+      description: 'Accelerate your research with our comprehensive research agent that gathers, analyzes, and summarizes information.',
       features: [
         'Literature review',
         'Data gathering',
@@ -140,41 +140,62 @@ const AIAgentServices = ({ onAgentClick }) => {
 
   return (
     <section id="ai-agents" className="py-5 agents-section" ref={agentContainerRef}>
-      <div className="container position-relative">
-        <div className="text-center mb-5">
-          <h2 className="display-4 fw-bold mb-3 gradient-heading">AI Agent Solutions</h2>
+      <div className="section-background">
+        <div className="gradient-sphere gradient-sphere-purple" style={{ top: '-100px', right: '10%' }}></div>
+        <div className="gradient-sphere gradient-sphere-green" style={{ bottom: '5%', left: '-100px' }}></div>
+        <div className="gradient-sphere gradient-sphere-blue" style={{ bottom: '40%', right: '20%' }}></div>
+      </div>
+      
+      <div className="container position-relative section-content">
+        <div className="text-center mb-5 reveal-text">
+          <span className="orbit-badge mb-3">Our AI Solutions</span>
+          <h2 className="display-4 fw-bold mb-3 gradient-heading">AI Agents</h2>
           <p className="lead text-muted">
-            Discover our specialized AI agents designed to revolutionize your business operations and productivity
+            Discover our marketplace of powerful AI agents ready to be deployed for your business needs
           </p>
         </div>
         
         <div className="row g-4 justify-content-center">
           {aiAgents.map((agent, index) => (
-            <div key={index} className="col-md-6 col-lg-4 mb-4">
-              <div className={`agent-card ${agent.color} ${isVisible ? 'fade-in' : ''}`} style={{'--animation-order': index}}>
-                <div className="agent-card-inner">
-                  <div className="agent-card-front">
-                    <div className="agent-icon-wrapper">
-                      <i className={`fas ${agent.icon}`}></i>
-                    </div>
-                    <h3 className="agent-title">{agent.title}</h3>
-                    <p className="agent-description">{agent.description}</p>
+            <div 
+              key={index} 
+              className="col-md-6 col-lg-4 mb-4"
+            >
+              <div 
+                className={`modern-agent-card ${agent.color} ${isVisible ? 'fade-in' : ''}`} 
+                style={{'--animation-order': index}}
+              >
+                <div className="agent-glow"></div>
+                <div className="agent-icon-container">
+                  <div className="agent-icon-wrapper">
+                    <i className={`fas ${agent.icon}`}></i>
                   </div>
-                  <div className="agent-card-back">
-                    <h3 className="agent-title">Capabilities</h3>
-                    <ul className="agent-features">
-                      {agent.features.map((feature, idx) => (
-                        <li key={idx}>
-                          <i className="fas fa-check-circle me-2"></i>
-                          {feature}
-                        </li>
-                      ))}
-                    </ul>
+                </div>
+                
+                <div className="agent-content">
+                  <h3 className="agent-title">{agent.title}</h3>
+                  <p className="agent-description">{agent.description}</p>
+                  
+                  <h4 className="agent-subtitle">Features</h4>
+                  <ul className="agent-features">
+                    {agent.features.map((feature, idx) => (
+                      <li key={idx} className="feature-item">
+                        <i className="fas fa-check-circle me-2"></i>
+                        {feature}
+                      </li>
+                    ))}
+                  </ul>
+
+                  <div className="text-center mt-4">
                     <button 
-                      className="btn btn-light agent-btn" 
-                      onClick={() => onAgentClick && onAgentClick(agent.title)}
+                      className="btn btn-primary btn-glow action-btn" 
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        onAgentClick && onAgentClick(agent.title);
+                      }}
                     >
-                      Get Started
+                      <span>Try Agent</span>
+                      <i className="fas fa-rocket ms-2"></i>
                     </button>
                   </div>
                 </div>

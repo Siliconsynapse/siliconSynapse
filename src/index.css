@@ -13,6 +13,14 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* Add global overflow control */
+html, body {
+  overflow-x: hidden;
+  width: 100%;
+  max-width: 100%;
+  position: relative;
+}
+
 a {
   font-weight: 500;
   color: #646cff;

@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import Logo from './Logo';
+import './Navbar.css';
 
 const Navbar = ({ isAuthenticated, setIsAuthenticated }) => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -22,9 +24,9 @@ const Navbar = ({ isAuthenticated, setIsAuthenticated }) => {
   return (
     <nav className={`navbar navbar-expand-lg fixed-top ${isScrolled ? 'scrolled' : ''}`}>
       <div className="container">
-        <a className="navbar-brand" href="#">
-          SiliconSynapse
-        </a>
+        <Link to="/" className="navbar-brand">
+          <Logo size={isScrolled ? 'small' : 'default'} isScrolled={isScrolled} />
+        </Link>
         <button
           className="navbar-toggler"
           type="button"

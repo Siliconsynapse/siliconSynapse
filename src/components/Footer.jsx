@@ -53,8 +53,14 @@ const Footer = () => {
     { name: 'Privacy', icon: 'fa-shield-alt', href: '#privacy' }
   ];
   return (
-    <footer ref={footerRef} className="py-5 mt-5 border-top border-secondary position-relative">      {/* Decorative floating icons have been removed */}
-      <div className="container">
+    <footer ref={footerRef} className="py-5 mt-5 footer-section position-relative">
+      <div className="section-background">
+        <div className="gradient-sphere gradient-sphere-blue" style={{ bottom: '-100px', right: '-100px' }}></div>
+        <div className="gradient-sphere gradient-sphere-green" style={{ top: '30%', left: '-200px' }}></div>
+        <div className="gradient-sphere gradient-sphere-purple" style={{ top: '-100px', right: '30%' }}></div>
+      </div>
+      
+      <div className="container section-content">
         {/* Newsletter Section */}
         <div className="row mb-5">
           <div className="col-lg-6 mx-auto text-center">
@@ -72,7 +78,7 @@ const Footer = () => {
                   onChange={(e) => setEmail(e.target.value)}
                   required
                 />
-                <button type="submit" className="btn btn-primary">
+                <button type="submit" className="btn btn-primary btn-glow">
                   {subscribed ? (
                     <span><i className="fas fa-check me-2"></i>Subscribed!</span>
                   ) : (
@@ -101,8 +107,8 @@ const Footer = () => {
           <div className="col-lg-4">
             <h3 className="h4 mb-4">SiliconSynapse</h3>
             <p className="text-muted mb-4">
-              Transforming ideas into digital reality. We specialize in MCP integration,
-              web development, and AI solutions to help your business thrive.
+              Empowering businesses with intelligent AI agents and cutting-edge solutions
+              tailored to revolutionize your operations and drive innovation.
             </p>
             <div className="d-flex gap-3">
               <a href="#" className="social-icon-link">
