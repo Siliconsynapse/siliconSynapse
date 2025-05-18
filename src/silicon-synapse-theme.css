@@ -51,10 +51,20 @@
   --shadow-md: 0 5px 15px rgba(0, 0, 0, 0.05);
   --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.15);
   --shadow-xl: 0 15px 35px rgba(0, 0, 0, 0.2);
-  
-  /* Gradients */
+    /* Gradients */
   --gradient-primary: linear-gradient(45deg, var(--primary), var(--secondary));
   --gradient-bg: linear-gradient(135deg, var(--dark-bg) 0%, var(--dark-bg-lighter) 100%);
+  
+  /* AI Agent Card Colors */
+  --agent-blue: linear-gradient(135deg, #3b82f6, #60a5fa);
+  --agent-teal: linear-gradient(135deg, #14b8a6, #5eead4);
+  --agent-purple: linear-gradient(135deg, #8b5cf6, #c4b5fd);
+  --agent-green: linear-gradient(135deg, #10b981, #6ee7b7);
+  --agent-indigo: linear-gradient(135deg, #6366f1, #a5b4fc);
+  --agent-orange: linear-gradient(135deg, #f97316, #fdba74);
+  --agent-red: linear-gradient(135deg, #ef4444, #fca5a5);
+  --agent-pink: linear-gradient(135deg, #ec4899, #f9a8d4);
+  --agent-yellow: linear-gradient(135deg, #eab308, #fde047);
 }
 
 /* Base Reset */
@@ -114,8 +124,8 @@ p {
 .gradient-text {
   background: var(--gradient-primary);
   -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
   background-clip: text;
+  -webkit-text-fill-color: transparent;
   color: transparent;
 }
 
@@ -279,6 +289,29 @@ a:hover {
 .service-card:hover {
   transform: translateY(-5px);
   box-shadow: var(--shadow-lg);
+}
+
+/* AI Agent Cards */
+.agent-card {
+  position: relative;
+  height: 400px;
+  perspective: 1000px;
+  margin-bottom: 30px;
+}
+
+.agent-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transform-style: preserve-3d;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+}
+
+.agent-card:hover .agent-card-inner {
+  transform: rotateY(180deg);
 }
 
 .service-icon-wrapper {
