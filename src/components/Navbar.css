@@ -1,0 +1,110 @@
+/* 
+ * Navbar Styles for Silicon Synapse
+ * Includes responsive styles for the brand logo
+ */
+
+.navbar {
+  transition: all 0.3s ease;
+  padding: 0.8rem 0;
+  background-color: transparent;
+  backdrop-filter: blur(5px);
+  /* No bottom border for consistent section transitions */
+}
+
+.navbar.scrolled {
+  padding: 0.5rem 0;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  background-color: rgba(15, 23, 42, 0.5);
+}
+
+.navbar-brand {
+  display: flex;
+  align-items: center;
+  margin-right: 30px;
+  overflow: visible;
+  white-space: nowrap;
+  padding: 8px 0;
+  text-decoration: none;
+}
+
+.navbar-brand .logo-large {
+  height: 50px;
+  width: auto;
+  transition: var(--transition-normal);
+  display: inline-block;
+}
+
+.navbar-brand .logo-small {
+  display: none;
+  height: 45px;
+  width: auto;
+  transition: var(--transition-normal);
+}
+
+.navbar.scrolled .navbar-brand .logo-large {
+  height: 45px;
+}
+
+.navbar.scrolled .navbar-brand .logo-small {
+  height: 40px;
+}
+
+/* Mobile logo adjustments */
+@media (max-width: 768px) {
+  .navbar-brand .logo-large {
+    display: none;
+  }
+
+  .navbar-brand .logo-small {
+    display: inline-block;
+    height: 45px;
+    width: auto;
+  }
+  
+  .navbar.scrolled .navbar-brand .logo-small {
+    height: 40px;
+  }
+
+  .navbar-brand {
+    margin-right: 15px;
+  }
+  
+  .navbar-nav .nav-link {
+    padding: 0.5rem 0 !important;
+  }
+  
+  .navbar .btn-outline-light {
+    margin-top: 0.5rem;
+  }
+}
+
+/* Navigation items styling */
+.navbar-nav .nav-link {
+  font-size: 0.9rem;
+  padding: 0.5rem 0.8rem !important;
+  font-weight: 500;
+  color: #e2e8f0 !important;
+  transition: all 0.3s ease;
+}
+
+.navbar-nav .nav-link:hover {
+  color: #3b82f6 !important;
+  transform: translateY(-1px);
+}
+
+/* Sign in button */
+.navbar .btn-outline-light {
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+}
+
+.navbar .btn-outline-light:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.2);
+  transform: translateY(-1px);
+}
+
+/* Animation for logo hover */
+.navbar-brand img:hover {
+  filter: drop-shadow(0 0 4px rgba(59, 130, 246, 0.5));
+}

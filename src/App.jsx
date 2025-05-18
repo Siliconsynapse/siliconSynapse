@@ -3,8 +3,8 @@ import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-route
 import './App.css'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
-import Services from './components/Services'
 import AIAgentServices from './components/AIAgentServices'
+import TechOrbit from './components/TechOrbit'
 import DynamicContent from './components/DynamicContent'
 import Footer from './components/Footer'
 import Login from './components/Login'
@@ -14,8 +14,8 @@ function MainContent({ isAuthenticated, onServiceClick }) {
   return (
     <>
       <Hero />
-      <Services onServiceClick={onServiceClick} />
       <AIAgentServices onAgentClick={onServiceClick} />
+      <TechOrbit />
       <DynamicContent />
       <Footer />
     </>

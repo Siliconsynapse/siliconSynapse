@@ -20,44 +20,56 @@ const Hero = () => {
 
   return (
     <section className="hero-section" ref={heroRef} style={{ position: 'relative' }}>
-      <div className="container">
+      <div className="hero-background">
+        <div className="gradient-sphere gradient-sphere-1"></div>
+        <div className="gradient-sphere gradient-sphere-2"></div>
+        <div className="gradient-sphere gradient-sphere-3"></div>
+      </div>
+      
+      <div className="container section-content">
         <div className="row align-items-center">
           <div className="col-lg-6 hero-content fade-in">
+            <div className="hero-badge mb-4">
+              <span className="pulse"></span>
+              Next-Gen AI Solutions
+            </div>
             <h1 className="hero-title">
-              Transforming Ideas into Digital Reality
+              <span className="text-gradient">Intelligent Agents</span> Powering Tomorrow's Innovation
             </h1>
             <p className="hero-subtitle">
-              Tell us a problem, and we'll find the perfect solution for you.
-              We specialize in MCP integration, web development, and AI agents.
+              Unleash the potential of AI with our custom-built autonomous agents that transform 
+              complex tasks into automated workflows. Revolutionize how your business operates.
             </p>
-            <div className="d-flex gap-3">
-              <a href="#services" className="btn btn-primary">
-                Explore Services
+            <div className="d-flex gap-3 hero-buttons">
+              <a href="#services" className="btn btn-primary btn-glow">
+                Explore AI Agents
               </a>
               <a href="#contact" className="btn btn-outline-light">
-                Get in Touch
+                Deploy Your Agent
               </a>
             </div>
-          </div>          <div className="col-lg-6 d-none d-lg-block" style={{ position: 'relative', minHeight: 500 }}>
+          </div>
+          <div className="col-lg-6 d-none d-lg-block" style={{ position: 'relative', minHeight: 500 }}>
             <div className="float-animation">
-              <div className="position-relative" style={{ height: '500px' }}>                <div className="position-absolute" style={{ top: '5%', left: '5%' }}>
+              <div className="position-relative" style={{ height: '500px' }}>
+                <div className="position-absolute" style={{ top: '5%', left: '5%' }}>
                   <div className="service-card p-4">
-                    <i className="fas fa-robot service-icon"></i>
-                    <h4>AI Solutions</h4>
+                    <i className="fas fa-brain service-icon"></i>
+                    <h4>Cognitive Agents</h4>
                   </div>
                 </div>
                 <div className="position-absolute" style={{ top: '38%', left: '55%' }}>
                   <div className="service-card p-4">
-                    <i className="fas fa-code service-icon"></i>
-                    <h4>Web Development</h4>
-                  </div>
-                </div>                <div className="position-absolute" style={{ top: '72%', left: '20%' }}>
-                  <div className="service-card p-4">
-                    <i className="fas fa-network-wired service-icon"></i>
-                    <h4>MCP Integration</h4>
+                    <i className="fas fa-robot service-icon"></i>
+                    <h4>Task Automation</h4>
                   </div>
                 </div>
-                {/* Floating Tech Icons have been removed and repurposed elsewhere */}
+                <div className="position-absolute" style={{ top: '72%', left: '20%' }}>
+                  <div className="service-card p-4">
+                    <i className="fas fa-microchip service-icon"></i>
+                    <h4>AI Integration</h4>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
