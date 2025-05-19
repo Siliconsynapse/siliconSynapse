@@ -111,17 +111,14 @@ const Footer = () => {
               tailored to revolutionize your operations and drive innovation.
             </p>
             <div className="d-flex gap-3">
-              <a href="#" className="social-icon-link">
+              <a href="https://www.linkedin.com/company/siliconsynapse" className="social-icon-link" target="_blank" rel="noopener noreferrer">
                 <i className="fa-brands fa-linkedin"></i>
               </a>
-              <a href="#" className="social-icon-link">
+              <a href="https://x.com/siliconsynapse8" className="social-icon-link" target="_blank" rel="noopener noreferrer">
                 <i className="fa-brands fa-twitter"></i>
               </a>
-              <a href="#" className="social-icon-link">
-                <i className="fa-brands fa-github"></i>
-              </a>
-              <a href="#" className="social-icon-link">
-                <i className="fa-brands fa-instagram"></i>
+              <a href="mailto:siliconsynapse8@gmail.com" className="social-icon-link">
+                <i className="fa-solid fa-envelope"></i>
               </a>
             </div>
           </div>
@@ -146,22 +143,22 @@ const Footer = () => {
               <li className="mb-3 d-flex align-items-center">
                 <i className="fas fa-envelope me-3 text-primary"></i>
                 <div>
-                  <div>contact@siliconsynapse.com</div>
+                  <div>siliconsynapse8@gmail.com</div>
                   <small className="text-muted">24/7 Support</small>
                 </div>
               </li>
               <li className="mb-3 d-flex align-items-center">
                 <i className="fas fa-phone me-3 text-primary"></i>
                 <div>
-                  <div>+1 (555) 123-4567</div>
+                  <div>+91 7668055685</div>
                   <small className="text-muted">Mon-Fri, 9am-6pm</small>
                 </div>
               </li>
               <li className="mb-3 d-flex align-items-center">
                 <i className="fas fa-map-marker-alt me-3 text-primary"></i>
                 <div>
-                  <div>123 Tech Street</div>
-                  <small className="text-muted">Silicon Valley, CA</small>
+                  <div>Bangalore</div>
+                  <small className="text-muted">India</small>
                 </div>
               </li>
             </ul>
