@@ -347,12 +347,16 @@ section {
   border: 1px solid rgba(255, 255, 255, 0.05);
   color: #3b82f6;
   transition: all 0.3s ease;
+  text-decoration: none;
+  font-size: 1.2rem;
 }
 
 .social-icon-link:hover {
   background: rgba(59, 130, 246, 0.1);
   border-color: rgba(59, 130, 246, 0.3);
   transform: translateY(-3px);
+  color: #60a5fa;
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.2);
 }
 
 .quick-link-item {

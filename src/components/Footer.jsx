@@ -39,18 +39,18 @@ const Footer = () => {
   };
 
   const socialStats = [
-    { icon: 'fa-github', count: '2.5k+', label: 'Repositories' },
-    { icon: 'fa-linkedin', count: '10k+', label: 'Connections' },
-    { icon: 'fa-twitter', count: '15k+', label: 'Followers' }
+    { icon: 'fa-brands fa-github', count: '2.5k+', label: 'Repositories' },
+    { icon: 'fa-brands fa-linkedin', count: '10k+', label: 'Connections' },
+    { icon: 'fa-brands fa-twitter', count: '15k+', label: 'Followers' }
   ];
 
   const quickLinks = [
-    { name: 'Services', icon: 'fa-cogs', href: '#services' },
-    { name: 'About Us', icon: 'fa-info-circle', href: '#about' },
-    { name: 'Contact', icon: 'fa-envelope', href: '#contact' },
-    { name: 'Blog', icon: 'fa-blog', href: '#blog' },
-    { name: 'Careers', icon: 'fa-briefcase', href: '#careers' },
-    { name: 'Privacy', icon: 'fa-shield-alt', href: '#privacy' }
+    { name: 'Services', icon: 'fa-solid fa-cogs', href: '#services' },
+    { name: 'About Us', icon: 'fa-solid fa-info-circle', href: '#about' },
+    { name: 'Contact', icon: 'fa-solid fa-envelope', href: '#contact' },
+    { name: 'Blog', icon: 'fa-solid fa-blog', href: '#blog' },
+    { name: 'Careers', icon: 'fa-solid fa-briefcase', href: '#careers' },
+    { name: 'Privacy', icon: 'fa-solid fa-shield-alt', href: '#privacy' }
   ];
   return (
     <footer ref={footerRef} className="py-5 mt-5 footer-section position-relative">
@@ -95,7 +95,7 @@ const Footer = () => {
           {socialStats.map((stat, index) => (
             <div key={index} className="col-md-4 text-center">
               <div className="social-stat-card p-4 rounded-4">
-                <i className={`fab ${stat.icon} fa-2x mb-3 text-primary`}></i>
+                <i className={`${stat.icon} fa-2x mb-3 text-primary`}></i>
                 <h4 className="h3 mb-2">{stat.count}</h4>
                 <p className="text-muted mb-0">{stat.label}</p>
               </div>
@@ -112,16 +112,16 @@ const Footer = () => {
             </p>
             <div className="d-flex gap-3">
               <a href="#" className="social-icon-link">
-                <i className="fab fa-linkedin fa-lg"></i>
+                <i className="fa-brands fa-linkedin"></i>
               </a>
               <a href="#" className="social-icon-link">
-                <i className="fab fa-twitter fa-lg"></i>
+                <i className="fa-brands fa-twitter"></i>
               </a>
               <a href="#" className="social-icon-link">
-                <i className="fab fa-github fa-lg"></i>
+                <i className="fa-brands fa-github"></i>
               </a>
               <a href="#" className="social-icon-link">
-                <i className="fab fa-instagram fa-lg"></i>
+                <i className="fa-brands fa-instagram"></i>
               </a>
             </div>
           </div>

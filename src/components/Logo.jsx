@@ -37,35 +37,33 @@ const Logo = ({ size = 'default', className = '', isScrolled = false }) => {
           transition: 'all 0.3s ease'
         }}
       >
-        {/* Cursor-inspired Logo */}
-        <svg 
-          width="100%" 
-          height="100%" 
-          viewBox="0 0 100 100" 
-          fill="none" 
-          xmlns="http://www.w3.org/2000/svg"
-        >
+        {/* Brain Circuit Logo SVG */}
+        <svg width="100%" height="100%" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="256" cy="256" r="240" fill="url(#gradient-bg)" />
+          <g filter="url(#glow)">
+            <path d="M256 120C256 120 320 160 320 256C320 352 256 392 256 392" stroke="white" strokeWidth="16" strokeLinecap="round"/>
+            <path d="M192 160C192 160 224 200 224 256C224 312 192 352 192 352" stroke="white" strokeWidth="16" strokeLinecap="round"/>
+            <path d="M320 160C320 160 288 200 288 256C288 312 320 352 320 352" stroke="white" strokeWidth="16" strokeLinecap="round"/>
+            <circle cx="256" cy="256" r="24" fill="white"/>
+            <circle cx="224" cy="256" r="16" fill="white"/>
+            <circle cx="288" cy="256" r="16" fill="white"/>
+            <circle cx="256" cy="120" r="16" fill="white"/>
+            <circle cx="256" cy="392" r="16" fill="white"/>
+            <circle cx="192" cy="160" r="16" fill="white"/>
+            <circle cx="192" cy="352" r="16" fill="white"/>
+            <circle cx="320" cy="160" r="16" fill="white"/>
+            <circle cx="320" cy="352" r="16" fill="white"/>
+          </g>
           <defs>
-            <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="#3b82f6" />
-              <stop offset="100%" stopColor="#10b981" />
+            <linearGradient id="gradient-bg" x1="0" y1="0" x2="512" y2="512" gradientUnits="userSpaceOnUse">
+              <stop offset="0%" stopColor="#3B82F6"/>
+              <stop offset="100%" stopColor="#10B981"/>
             </linearGradient>
+            <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+              <feGaussianBlur stdDeviation="4" result="blur"/>
+              <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+            </filter>
           </defs>
-          
-          {/* Main Shape */}
-          <path 
-            d="M20 20 L80 20 L80 80 L20 80 Z" 
-            fill="url(#logoGradient)"
-            strokeLinejoin="round"
-            className="main-shape"
-          />
-          
-          {/* Cut-out triangle */}
-          <path 
-            d="M40 50 L60 30 L60 70 Z" 
-            fill="#0f172a"
-            className="cut-out"
-          />
         </svg>
       </div>
       
@@ -95,16 +93,12 @@ const Logo = ({ size = 'default', className = '', isScrolled = false }) => {
       
       <style>
         {`
-          .logo-icon:hover .main-shape {
+          .logo-icon:hover svg circle {
             filter: brightness(1.1);
           }
-          
-          .logo-icon:hover .cut-out {
-            transform: scale(1.05);
-            transform-origin: center;
-            transition: transform 0.3s ease;
+          .logo-icon:hover svg g {
+            filter: drop-shadow(0 0 8px #3b82f6);
           }
-          
           @media (max-width: 768px) {
             .logo-container > div:last-child {
               opacity: 0;
