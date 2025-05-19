@@ -92,4 +92,4 @@ Your Name
 
 ---
 
-*Made with ❤️ by [Your Company/Team Name]*
+*Made with ❤️ by Siliconsynapse Team*
