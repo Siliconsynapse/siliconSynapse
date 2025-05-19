@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background Circle -->
+  <circle cx="256" cy="256" r="240" fill="url(#gradient-bg)" />
+  
+  <!-- Main Brain Circuit Design -->
+  <g filter="url(#glow)">
+    <!-- Circuit Lines -->
+    <path d="M256 120C256 120 320 160 320 256C320 352 256 392 256 392" stroke="white" stroke-width="8" stroke-linecap="round"/>
+    <path d="M192 160C192 160 224 200 224 256C224 312 192 352 192 352" stroke="white" stroke-width="8" stroke-linecap="round"/>
+    <path d="M320 160C320 160 288 200 288 256C288 312 320 352 320 352" stroke="white" stroke-width="8" stroke-linecap="round"/>
+    
+    <!-- Connection Nodes -->
+    <circle cx="256" cy="256" r="16" fill="white"/>
+    <circle cx="224" cy="256" r="12" fill="white"/>
+    <circle cx="288" cy="256" r="12" fill="white"/>
+    <circle cx="256" cy="120" r="12" fill="white"/>
+    <circle cx="256" cy="392" r="12" fill="white"/>
+    <circle cx="192" cy="160" r="12" fill="white"/>
+    <circle cx="192" cy="352" r="12" fill="white"/>
+    <circle cx="320" cy="160" r="12" fill="white"/>
+    <circle cx="320" cy="352" r="12" fill="white"/>
+  </g>
+  
+  <!-- Text -->
+  <text x="256" y="450" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="24" font-weight="bold">
+    SiliconSynapse
+  </text>
+  
+  <!-- Gradients -->
+  <defs>
+    <linearGradient id="gradient-bg" x1="0" y1="0" x2="512" y2="512" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#3B82F6"/>
+      <stop offset="100%" stop-color="#10B981"/>
+    </linearGradient>
+    
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+  </defs>
+</svg> 
