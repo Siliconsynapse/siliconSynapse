@@ -1,4 +1,38 @@
 import { useState, useRef, useEffect } from 'react';
+import { sendChatMessage } from '../services/api';
+
+// Bot avatar as an inline SVG component
+const BotAvatar = ({ size = 30 }) => (
+  <svg width={size} height={size} viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+    {/* Robot head - rounded square */}
+    <rect width="40" height="40" rx="12" fill="#1E3A8A" x="5" y="2" />
+    
+    {/* Robot face - lighter blue */}
+    <rect x="8" y="10" width="34" height="24" rx="10" fill="#3B82F6" />
+    
+    {/* Robot eyes - cute and friendly */}
+    <circle cx="17" cy="20" r="4" fill="white" />
+    <circle cx="33" cy="20" r="4" fill="white" />
+    <circle cx="17" cy="19" r="2" fill="#111827" />
+    <circle cx="33" cy="19" r="2" fill="#111827" />
+    
+    {/* Cute smile */}
+    <path d="M17 30 Q25 35 33 30" stroke="#111827" strokeWidth="2" strokeLinecap="round" />
+    
+    {/* Antenna with heart shape */}
+    <rect x="23" y="1" width="4" height="6" rx="2" fill="#10B981" />
+    <circle cx="25" cy="0" r="3" fill="#F472B6" />
+    
+    {/* Robot ears/side parts */}
+    <rect x="1" y="15" width="4" height="12" rx="2" fill="#3B82F6" />
+    <rect x="45" y="15" width="4" height="12" rx="2" fill="#3B82F6" />
+    
+    {/* Bottom indicator lights - cute detail */}
+    <circle cx="18" cy="40" r="2" fill="#10B981" />
+    <circle cx="25" cy="40" r="2" fill="#F472B6" />
+    <circle cx="32" cy="40" r="2" fill="#10B981" />
+  </svg>
+);
 
 const botGreetings = [
   "Hi there! 👋 How can I help you today?",
@@ -14,6 +48,9 @@ const Chatbot = () => {
   const [input, setInput] = useState('');
   const [typing, setTyping] = useState(false);
   const chatEndRef = useRef(null);
+  
+  // Keep track of conversation history for the API
+  const [conversationHistory, setConversationHistory] = useState([]);
 
   useEffect(() => {
     if (open && chatEndRef.current) {
@@ -21,31 +58,50 @@ const Chatbot = () => {
     }
   }, [messages, open]);
 
-  const handleSend = (e) => {
+  // Update conversation history when messages change
+  useEffect(() => {
+    // Convert our UI messages to the format needed for the API
+    const apiMessages = messages.map(msg => ({
+      role: msg.from === 'user' ? 'user' : 'agent',
+      content: msg.text
+    }));
+    
+    setConversationHistory(apiMessages);
+  }, [messages]);
+
+  const handleSend = async (e) => {
     e.preventDefault();
     if (!input.trim()) return;
     const userMsg = { from: 'user', text: input };
+    
+    // Update UI with user message
     setMessages((msgs) => [...msgs, userMsg]);
     setInput('');
     setTyping(true);
-    setTimeout(() => {
+    
+    // Convert current messages to API format (excluding the message we just added)
+    const currentHistory = messages.map(msg => ({
+      role: msg.from === 'user' ? 'user' : 'agent',
+      content: msg.text
+    }));
+    
+    try {
+      // Call the API service with the current message and conversation history
+      const botResponse = await sendChatMessage(input, currentHistory);
       setMessages((msgs) => [
         ...msgs,
-        { from: 'bot', text: getBotReply(input) }
+        { from: 'bot', text: botResponse }
       ]);
+    } catch (error) {
+      console.error("Error sending message:", error);
+      setMessages((msgs) => [
+        ...msgs,
+        { from: 'bot', text: "Sorry, I'm having trouble responding right now. Please try again later." }
+      ]);
+    } finally {
       setTyping(false);
-    }, 1200);
+    }
   };
-
-  function getBotReply(userInput) {
-    const lower = userInput.toLowerCase();
-    if (lower.includes('service') || lower.includes('offer')) return "We offer MCP integration, web development, and AI solutions!";
-    if (lower.includes('contact')) return "You can contact us via the form below or email contact@siliconsynapse.com.";
-    if (lower.includes('price') || lower.includes('cost')) return "Pricing depends on your needs. Let's discuss your project!";
-    if (lower.includes('ai')) return "Our AI solutions automate tasks and enhance decision-making.";
-    if (lower.includes('hello') || lower.includes('hi')) return "Hello! How can I assist you today?";
-    return "I'm here to help! Ask me anything about our services or company.";
-  }
 
   return (
     <>
@@ -62,23 +118,31 @@ const Chatbot = () => {
           <button
             className="shadow-lg"
             style={{
-              background: 'linear-gradient(45deg, #3b82f6, #10b981)',
+              background: '#111827',
               border: 'none',
               borderRadius: '50%',
-              width: 64,
-              height: 64,
+              width: 70,
+              height: 70,
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              color: 'white',
-              fontSize: 40,
               cursor: 'pointer',
-              boxShadow: '0 8px 32px rgba(59,130,246,0.2)'
+              boxShadow: '0 8px 32px rgba(59,130,246,0.3)',
+              padding: '0'
             }}
             onClick={() => setOpen(true)}
-            aria-label="Open chatbot"
+            aria-label="Open AI Assistant chatbot"
           >
-            <i className="fa-solid fa-robot" style={{color: 'white', fontSize: 40}}></i>
+            <div style={{
+              width: '50px',
+              height: '50px',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              borderRadius: '50%'
+            }}>
+              <BotAvatar size={48} />
+            </div>
           </button>
         )}
       </div>
@@ -108,10 +172,16 @@ const Chatbot = () => {
             display: 'flex', 
             alignItems: 'center', 
             justifyContent: 'space-between',
-            background: 'rgba(59,130,246,0.1)'
+            background: 'rgba(17,24,39,0.95)'
           }}>
-            <span className="fw-bold" style={{ color: '#3b82f6' }}>
-              <i className="fa-solid fa-robot me-2"></i>SiliconBot
+            <span className="fw-bold" style={{ 
+              color: 'white',
+              display: 'flex',
+              alignItems: 'center', 
+              gap: '10px'
+            }}>
+              <BotAvatar size={26} />
+              AI Assistant
             </span>
             <button
               onClick={() => setOpen(false)}
@@ -129,7 +199,7 @@ const Chatbot = () => {
               onMouseOut={(e) => e.currentTarget.style.background = 'none'}
               aria-label="Close chatbot"
             >
-              <i className="fa-solid fa-times"></i>
+              <i className="fas fa-times"></i>
             </button>
           </div>
           <div style={{ 
@@ -138,7 +208,9 @@ const Chatbot = () => {
             padding: '1rem', 
             background: 'rgba(30,41,59,0.95)',
             scrollbarWidth: 'thin',
-            scrollbarColor: '#3b82f6 rgba(255,255,255,0.1)'
+            scrollbarColor: '#3b82f6 rgba(255,255,255,0.1)',
+            minHeight: '300px',
+            maxHeight: '60vh'
           }}>
             {messages.map((msg, idx) => (
               <div key={idx} style={{
@@ -147,6 +219,19 @@ const Chatbot = () => {
                 marginBottom: 12,
                 animation: 'fadeIn 0.3s ease'
               }}>
+                {msg.from === 'bot' && (
+                  <div style={{
+                    width: '30px',
+                    height: '30px',
+                    marginRight: '8px',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    alignSelf: 'flex-end'
+                  }}>
+                    <BotAvatar size={30} />
+                  </div>
+                )}
                 <div style={{
                   background: msg.from === 'user' ? 'linear-gradient(45deg, #3b82f6, #10b981)' : 'rgba(255,255,255,0.08)',
                   color: msg.from === 'user' ? 'white' : '#cbd5e1',
@@ -168,6 +253,17 @@ const Chatbot = () => {
                 marginBottom: 12,
                 animation: 'fadeIn 0.3s ease'
               }}>
+                <div style={{
+                  width: '30px',
+                  height: '30px',
+                  marginRight: '8px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  alignSelf: 'flex-end'
+                }}>
+                  <BotAvatar size={30} />
+                </div>
                 <div style={{
                   background: 'rgba(255,255,255,0.08)',
                   color: '#cbd5e1',
@@ -219,7 +315,7 @@ const Chatbot = () => {
               onMouseOver={(e) => e.currentTarget.style.transform = 'translateY(-2px)'}
               onMouseOut={(e) => e.currentTarget.style.transform = 'translateY(0)'}
             >
-              <i className="fa-solid fa-paper-plane"></i>
+              <i className="fas fa-paper-plane"></i>
             </button>
           </form>
         </div>

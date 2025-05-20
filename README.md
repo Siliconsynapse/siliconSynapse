@@ -18,6 +18,7 @@ A modern React-based web application for AI and technology services. Silicon Syn
 - **Frontend**: React.js with React Router
 - **Styling**: Custom CSS with responsive design
 - **Authentication**: Firebase Authentication
+- **API**: RESTful API for chatbot and other services
 - **Build Tool**: Vite
 - **Deployment**: Compatible with various hosting platforms
 
@@ -53,9 +54,11 @@ A modern React-based web application for AI and technology services. Silicon Syn
 
 - `src/components/` - React components for the application
 - `src/assets/` - Static assets including images and icons
+- `src/services/` - API services and mock server
 - `src/App.jsx` - Main application component
 - `src/App.css` - Main application styles
 - `src/firebase.js` - Firebase configuration and services
+- `docs/` - Documentation files
 
 ## 🧩 Components
 
@@ -64,7 +67,7 @@ A modern React-based web application for AI and technology services. Silicon Syn
 - **AIAgentServices** - Display of AI agent service offerings
 - **TechOrbit** - Technology stack visualization
 - **DynamicContent** - Content that changes based on user interaction
-- **Chatbot** - Interactive AI chatbot assistant
+- **Chatbot** - Interactive customer support chatbot with API integration
 - **Login** - User authentication interface
 
 ## 🔐 Authentication
