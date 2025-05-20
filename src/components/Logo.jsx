@@ -4,11 +4,11 @@ const Logo = ({ size = 'default', className = '', isScrolled = false }) => {
   const getSize = () => {
     switch (size) {
       case 'small':
-        return { width: 32, height: 32, fontSize: '0.9rem' };
+        return { width: 38, height: 38, fontSize: '0.9rem' };
       case 'large':
         return { width: 60, height: 60, fontSize: '1.5rem' };
       default:
-        return { width: 42, height: 42, fontSize: '1.2rem' };
+        return { width: 48, height: 48, fontSize: '1.2rem' };
     }
   };
 
@@ -25,7 +25,12 @@ const Logo = ({ size = 'default', className = '', isScrolled = false }) => {
         alignItems: 'center',
         gap: '0.75rem',
         cursor: 'pointer',
-        transition: 'all 0.3s ease'
+        transition: 'all 0.3s ease',
+        zIndex: 1001,
+        overflow: 'visible',
+        position: 'relative',
+        height: '100%',
+        minHeight: isScrolled ? '50px' : '60px'
       }}
     >
       <div
@@ -34,7 +39,12 @@ const Logo = ({ size = 'default', className = '', isScrolled = false }) => {
           width: dimensions.width,
           height: dimensions.height,
           position: 'relative',
-          transition: 'all 0.3s ease'
+          transition: 'all 0.3s ease',
+          overflow: 'visible',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          minHeight: isScrolled ? '38px' : '48px'
         }}
       >
         {/* Brain Circuit Logo SVG */}

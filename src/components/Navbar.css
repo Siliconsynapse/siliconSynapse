@@ -5,16 +5,19 @@
 
 .navbar {
   transition: all 0.3s ease;
-  padding: 0.8rem 0;
+  padding: 1rem 0;
   background-color: transparent;
   backdrop-filter: blur(5px);
+  z-index: 1000;
+  min-height: 80px; /* Ensure minimum height to prevent abrupt changes */
   /* No bottom border for consistent section transitions */
 }
 
 .navbar.scrolled {
-  padding: 0.5rem 0;
+  padding: 0.7rem 0;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
   background-color: rgba(15, 23, 42, 0.5);
+  min-height: 70px; /* Slightly smaller but still sufficient */
 }
 
 .navbar-brand {
@@ -25,6 +28,9 @@
   white-space: nowrap;
   padding: 8px 0;
   text-decoration: none;
+  z-index: 1001;
+  min-height: 60px; /* Ensure enough space for the logo */
+  transition: all 0.3s ease;
 }
 
 .navbar-brand .logo-large {
@@ -107,4 +113,11 @@
 /* Animation for logo hover */
 .navbar-brand img:hover {
   filter: drop-shadow(0 0 4px rgba(59, 130, 246, 0.5));
+}
+
+/* If you have a .logo-container class, add: */
+.logo-container {
+  padding-top: 4px;
+  padding-bottom: 4px;
+  overflow: visible;
 }

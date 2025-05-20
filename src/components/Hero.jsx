@@ -50,22 +50,22 @@ const Hero = () => {
             </div>
           </div>
           <div className="col-lg-6 d-none d-lg-block" style={{ position: 'relative', minHeight: 500 }}>
-            <div className="float-animation">
+            <div className="float-animation" style={{ overflow: 'visible', padding: '10px' }}>
               <div className="position-relative" style={{ height: '500px' }}>
                 <div className="position-absolute" style={{ top: '5%', left: '5%' }}>
-                  <div className="service-card p-4">
+                  <div className="service-card p-4" style={{ overflow: 'visible' }}>
                     <i className="fas fa-brain service-icon"></i>
                     <h4>Cognitive Agents</h4>
                   </div>
                 </div>
                 <div className="position-absolute" style={{ top: '38%', left: '55%' }}>
-                  <div className="service-card p-4">
+                  <div className="service-card p-4" style={{ overflow: 'visible' }}>
                     <i className="fas fa-robot service-icon"></i>
                     <h4>Task Automation</h4>
                   </div>
                 </div>
                 <div className="position-absolute" style={{ top: '72%', left: '20%' }}>
-                  <div className="service-card p-4">
+                  <div className="service-card p-4" style={{ overflow: 'visible' }}>
                     <i className="fas fa-microchip service-icon"></i>
                     <h4>AI Integration</h4>
                   </div>

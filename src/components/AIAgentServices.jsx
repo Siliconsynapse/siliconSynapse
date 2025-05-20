@@ -155,11 +155,12 @@ const AIAgentServices = ({ onAgentClick }) => {
           </p>
         </div>
         
-        <div className="row g-4 justify-content-center">
+        <div className="row g-4 justify-content-center" style={{ padding: '5px' }}>
           {aiAgents.map((agent, index) => (
             <div 
               key={index} 
               className="col-md-6 col-lg-4 mb-4"
+              style={{ padding: '10px' }}
             >
               <div 
                 className={`modern-agent-card ${agent.color} ${isVisible ? 'fade-in' : ''}`} 
