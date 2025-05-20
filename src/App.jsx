@@ -26,16 +26,17 @@ function MainContent({ isAuthenticated, onServiceClick }) {
 function AppContent() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [pendingService, setPendingService] = useState(null);
+  const [showComingSoonModal, setShowComingSoonModal] = useState(false);
+  const [selectedAgent, setSelectedAgent] = useState('');
   const navigate = useNavigate();
 
   // Handler for service click
   const handleServiceClick = (service) => {
-    if (!isAuthenticated) {
-      navigate('/login');
-      setPendingService(service);
-    } else {
-      window.location.hash = '#contact';
-    }
+    // Set the selected agent and show the modal
+    setSelectedAgent(service);
+    setShowComingSoonModal(true);
+    // Store service info if needed for future reference
+    setPendingService(service);
   };
 
   // Handler after login
@@ -60,6 +61,44 @@ function AppContent() {
         <Route path="/" element={<MainContent isAuthenticated={isAuthenticated} onServiceClick={handleServiceClick} />} />
       </Routes>
       <Chatbot />
+      
+      {/* Coming Soon Modal */}
+      {showComingSoonModal && (
+        <div className="modal-backdrop" onClick={() => setShowComingSoonModal(false)}>
+          <div className="coming-soon-modal" onClick={(e) => e.stopPropagation()}>
+            <div className="modal-header">
+              <h2>{selectedAgent} Agent</h2>
+              <button className="close-btn" onClick={() => setShowComingSoonModal(false)}>×</button>
+            </div>
+            <div className="modal-body">
+              <div className="coming-soon-icon">
+                <i className="fas fa-rocket"></i>
+              </div>
+              <h3>Coming Soon!</h3>
+              <p>We're currently developing this exciting AI agent. Stay tuned for updates!</p>
+              <div className="progress mb-3">
+                <div 
+                  className="progress-bar progress-bar-striped progress-bar-animated" 
+                  role="progressbar" 
+                  style={{
+                    width: "65%", 
+                    background: "linear-gradient(45deg, #3b82f6, #10b981)",
+                    backgroundSize: "200% 200%",
+                    animation: "progress-animation 2s ease infinite"
+                  }} 
+                  aria-valuenow="65" 
+                  aria-valuemin="0" 
+                  aria-valuemax="100"
+                ></div>
+              </div>
+              <p className="development-status">Development status: 65% complete</p>
+            </div>
+            <div className="modal-footer">
+              <button className="btn btn-primary" onClick={() => setShowComingSoonModal(false)}>Got it!</button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

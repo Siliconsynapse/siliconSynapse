@@ -38,10 +38,10 @@ const Footer = () => {
     }
   };
 
-  const socialStats = [
-    { icon: 'fa-brands fa-github', count: '2.5k+', label: 'Repositories' },
-    { icon: 'fa-brands fa-linkedin', count: '10k+', label: 'Connections' },
-    { icon: 'fa-brands fa-twitter', count: '15k+', label: 'Followers' }
+  const companyHighlights = [
+    { icon: 'fa-solid fa-code-branch', count: '50+', label: 'Projects Delivered' },
+    { icon: 'fa-solid fa-handshake', count: '30+', label: 'Happy Clients' },
+    { icon: 'fa-solid fa-award', count: '5+', label: 'Years Experience' }
   ];
 
   const quickLinks = [
@@ -90,11 +90,11 @@ const Footer = () => {
           </div>
         </div>
 
-        {/* Social Stats */}
+        {/* Company Highlights */}
         <div className="row mb-5">
-          {socialStats.map((stat, index) => (
+          {companyHighlights.map((stat, index) => (
             <div key={index} className="col-md-4 text-center">
-              <div className="social-stat-card p-4 rounded-4">
+              <div className="highlight-card p-4 rounded-4">
                 <i className={`${stat.icon} fa-2x mb-3 text-primary`}></i>
                 <h4 className="h3 mb-2">{stat.count}</h4>
                 <p className="text-muted mb-0">{stat.label}</p>
@@ -164,8 +164,6 @@ const Footer = () => {
             </ul>
           </div>
         </div>
-        
-        {/* Removed hr separator for smoother section transitions */}
         
         <div className="row align-items-center">
           <div className="col-md-6 text-center text-md-start">
