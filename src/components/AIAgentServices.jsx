@@ -182,8 +182,10 @@ const AIAgentServices = ({ onAgentClick }) => {
                   <ul className="agent-features">
                     {agent.features.map((feature, idx) => (
                       <li key={idx} className="feature-item">
-                        <i className="fas fa-check-circle me-2"></i>
-                        {feature}
+                        <span className="check-icon-container">
+                          <i className="fas fa-check-circle"></i>
+                        </span>
+                        <span className="feature-text">{feature}</span>
                       </li>
                     ))}
                   </ul>
