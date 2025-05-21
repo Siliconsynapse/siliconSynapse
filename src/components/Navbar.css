@@ -5,16 +5,19 @@
 
 .navbar {
   transition: all 0.3s ease;
-  padding: 0.8rem 0;
+  padding: 1rem 0;
   background-color: transparent;
   backdrop-filter: blur(5px);
+  z-index: 1000;
+  min-height: 80px; /* Ensure minimum height to prevent abrupt changes */
   /* No bottom border for consistent section transitions */
 }
 
 .navbar.scrolled {
-  padding: 0.5rem 0;
+  padding: 0.7rem 0;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
   background-color: rgba(15, 23, 42, 0.5);
+  min-height: 70px; /* Slightly smaller but still sufficient */
 }
 
 .navbar-brand {
@@ -25,6 +28,9 @@
   white-space: nowrap;
   padding: 8px 0;
   text-decoration: none;
+  z-index: 1001;
+  min-height: 60px; /* Ensure enough space for the logo */
+  transition: all 0.3s ease;
 }
 
 .navbar-brand .logo-large {
@@ -51,22 +57,20 @@
 
 /* Mobile logo adjustments */
 @media (max-width: 768px) {
-  .navbar-brand .logo-large {
-    display: none;
-  }
-
-  .navbar-brand .logo-small {
-    display: inline-block;
-    height: 45px;
-    width: auto;
+  .navbar {
+    padding: 0.8rem 0;
+    min-height: 70px;
   }
   
-  .navbar.scrolled .navbar-brand .logo-small {
-    height: 40px;
+  .navbar.scrolled {
+    padding: 0.6rem 0;
+    min-height: 65px;
   }
-
+  
   .navbar-brand {
-    margin-right: 15px;
+    margin-right: 10px;
+    min-height: 55px;
+    padding: 5px 0;
   }
   
   .navbar-nav .nav-link {
@@ -105,6 +109,24 @@
 }
 
 /* Animation for logo hover */
-.navbar-brand img:hover {
+.navbar-brand:hover {
   filter: drop-shadow(0 0 4px rgba(59, 130, 246, 0.5));
+}
+
+/* Ensure smooth transitions */
+.navbar, .navbar-brand, .navbar-nav, .nav-link, .logo-container, .logo-icon {
+  transition: all 0.4s ease-in-out;
+}
+
+/* Add padding to logo to prevent cutting off */
+.logo-with-padding {
+  padding: 3px 0;
+  margin: 2px 0;
+}
+
+/* If you have a .logo-container class, add: */
+.logo-container {
+  padding-top: 4px;
+  padding-bottom: 4px;
+  overflow: visible;
 }

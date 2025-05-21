@@ -49,22 +49,22 @@ const Hero = () => {
               </a>
             </div>
           </div>
-          <div className="col-lg-6 d-none d-lg-block" style={{ position: 'relative', minHeight: 500 }}>
-            <div className="float-animation">
-              <div className="position-relative" style={{ height: '500px' }}>
-                <div className="position-absolute" style={{ top: '5%', left: '5%' }}>
+          <div className="col-lg-6 d-none d-lg-block" style={{ position: 'relative', minHeight: 650 }}>
+            <div className="float-animation hero-cards-container" style={{ overflow: 'visible', padding: '40px' }}>
+              <div className="position-relative" style={{ height: '600px', width: '100%', overflow: 'visible' }}>
+                <div className="position-absolute hero-card-wrapper" style={{ top: '5%', left: '5%' }}>
                   <div className="service-card p-4">
                     <i className="fas fa-brain service-icon"></i>
                     <h4>Cognitive Agents</h4>
                   </div>
                 </div>
-                <div className="position-absolute" style={{ top: '38%', left: '55%' }}>
+                <div className="position-absolute hero-card-wrapper" style={{ top: '32%', left: '65%' }}>
                   <div className="service-card p-4">
                     <i className="fas fa-robot service-icon"></i>
                     <h4>Task Automation</h4>
                   </div>
                 </div>
-                <div className="position-absolute" style={{ top: '72%', left: '20%' }}>
+                <div className="position-absolute hero-card-wrapper" style={{ top: '72%', left: '12%' }}>
                   <div className="service-card p-4">
                     <i className="fas fa-microchip service-icon"></i>
                     <h4>AI Integration</h4>

@@ -5,7 +5,7 @@
   align-items: center;
   position: relative;
   overflow: hidden;
-  padding: 6rem 0;
+  padding: 6rem 0 9rem;
   z-index: 1;
 }
 
@@ -426,6 +426,69 @@
   .hero-subtitle {
     font-size: 1.125rem;
   }
+}
+
+/* Hero Cards Container and Wrappers - Added to fix hover cutoff issue */
+.hero-cards-container {
+  position: relative;
+  z-index: 2;
+}
+
+/* Adding visual connectors between cards */
+.hero-cards-container::before {
+  content: '';
+  position: absolute;
+  top: 20%;
+  left: 35%;
+  width: 40%;
+  height: 60%;
+  border: 2px dashed rgba(59, 130, 246, 0.15);
+  border-radius: 50%;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.hero-cards-container::after {
+  content: '';
+  position: absolute;
+  top: 25%;
+  left: 15%;
+  width: 70%;
+  height: 60%;
+  border: 2px dashed rgba(16, 185, 129, 0.15);
+  border-radius: 50%;
+  z-index: 1;
+  pointer-events: none;
+  transform: rotate(-10deg);
+}
+
+.hero-card-wrapper {
+  padding: 15px;
+  z-index: 5;
+  transition: all 0.4s ease;
+  width: 250px;
+  height: 160px;
+  pointer-events: auto;
+}
+
+/* Specific z-index for each card to prevent overlapping */
+.hero-card-wrapper:nth-child(1) {
+  z-index: 12;
+}
+
+.hero-card-wrapper:nth-child(2) {
+  z-index: 11;
+}
+
+/* Ensure cards at bottom have enough space */
+.hero-card-wrapper:nth-child(3) {
+  z-index: 10;
+}
+
+/* Better hover interaction to prevent overlapping */
+.hero-card-wrapper:hover .service-card {
+  transform: translateY(-7px) scale(1.03);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
 }
 
 @media (max-width: 768px) {

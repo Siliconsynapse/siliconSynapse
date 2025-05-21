@@ -54,7 +54,7 @@ function AppContent() {
   };
 
   return (
-    <div className="app-wrapper">
+    <div className="app-wrapper" style={{ overflow: 'visible' }}>
       <Navbar isAuthenticated={isAuthenticated} setIsAuthenticated={setIsAuthenticated} />
       <Routes>
         <Route path="/login" element={<Login onAuth={handleAuth} />} />

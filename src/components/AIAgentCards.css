@@ -74,6 +74,9 @@
   display: flex;
   flex-direction: column;
   z-index: 1;
+  margin: 15px 0;
+  /* Added clip-path: none to prevent any cutoff */
+  clip-path: none;
 }
 
 /* Status indicator for ready-to-deploy */
@@ -177,6 +180,9 @@
   margin-bottom: 1.25rem;
   position: relative;
   z-index: 5;
+  overflow: visible;
+  padding: 20px 0;  /* Increased padding to create more space for the icon when it transforms */
+  margin-top: 10px; /* Added margin-top to give space for the icon to move up */
 }
 
 /* Agent Icon */
@@ -189,16 +195,18 @@
   justify-content: center;
   font-size: 1.6rem;
   position: relative;
-  z-index: 5;
+  z-index: 10; /* Increased z-index to ensure icon stays on top */
   transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
   background: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(5px);
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
   will-change: transform;
+  overflow: visible;
 }
 
 .modern-agent-card:hover .agent-icon-wrapper {
-  transform: translateY(-8px) scale(1.05);
+  transform: translateY(-12px) scale(1.1);  /* Reduced the translateY value to prevent cutoff */
+  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.2);
 }
 
 .modern-agent-card.active .agent-icon-wrapper {
@@ -299,17 +307,24 @@
   padding-left: 0;
   margin-bottom: 2rem;
   text-align: left;
+  overflow: visible !important;
+  position: relative;
+  z-index: 5;
 }
 
 .feature-item {
   margin-bottom: 0.75rem;
   font-size: 0.95rem;
   display: flex;
-  align-items: flex-start;
+  align-items: center; /* Changed from flex-start to center for better alignment */
   color: rgba(255, 255, 255, 0.8);
   opacity: 0;
   transform: translateY(10px);
   animation: fadeInFeature 0.5s ease forwards;
+  padding: 0.25rem 0;  /* Added padding for better spacing */
+  position: relative;
+  overflow: visible !important;  /* Ensure no cutoff of content */
+  z-index: 2;  /* Ensure proper stacking */
 }
 
 .agent-details.expanded .feature-item {
@@ -343,6 +358,12 @@
   margin-right: 0.5rem;
   margin-top: 0.25rem;
   transition: transform 0.3s ease;
+  position: relative;
+  z-index: 5;  /* Ensure icon is above other elements */
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+  transform: translateZ(0);  /* Ensure proper rendering */
+  overflow: visible !important;
 }
 
 .feature-item:hover i {
@@ -516,6 +537,8 @@
 .modern-agent-card:hover {
   transform: translateY(-5px);
   background: rgba(30, 41, 59, 0.8);
+  /* Add padding-top to create more space for the icon on hover */
+  padding-top: 2rem;
 }
 
 .modern-agent-card.active {
