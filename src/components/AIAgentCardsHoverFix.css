@@ -1,0 +1,78 @@
+/* 
+ * AI Agent Cards Hover Fix
+ * This file contains fixes for icon cutoff issues on card hover
+ */
+
+/* Extra spacing for icon container to prevent cutoff */
+.modern-agent-card {
+  overflow: visible !important;
+  transform-style: preserve-3d;
+  perspective: 1000px;
+}
+
+/* Fix for icon container overflow */
+.agent-icon-container {
+  z-index: 20 !important;
+  overflow: visible !important;
+  transform-style: preserve-3d;
+}
+
+/* Enhanced icon wrapper with 3D transform */
+.agent-icon-wrapper {
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+  transform: translateZ(0);
+}
+
+/* Row container overflow fix */
+.agents-section .row, 
+.agents-section .col-md-6,
+.agents-section .col-lg-4 {
+  overflow: visible !important;
+}
+
+/* Fix for hover transform to prevent cutoff */
+.modern-agent-card:hover .agent-icon-wrapper {
+  transform: translateY(-12px) translateZ(10px) scale(1.1);
+}
+
+/* Add margin to container so icons don't get cut off at top */
+.agent-icon-container {
+  margin-top: 16px !important;
+}
+
+/* Card hover state padding to make room for elevated icon */
+.modern-agent-card:hover {
+  padding-top: 2rem !important;
+}
+
+/* Make the row have proper overflow handling */
+.row.g-4 {
+  overflow: visible !important;
+}
+
+/* Ensure the hover transform doesn't affect the icon visibility */
+.modern-agent-card:hover .agent-icon-wrapper {
+  /* We want to make sure the transform does not cause any cutoff */
+  transform: translateY(-12px) scale(1.1) translateZ(10px);
+}
+
+/* Adjust container to have enough vertical space */
+.agent-icon-container {
+  min-height: 85px;
+}
+
+/* Fix for column overflow to prevent cutoff */
+.col-md-6, .col-lg-4 {
+  overflow: visible !important;
+}
+
+/* Ensure the container has visible overflow */
+.container.position-relative.section-content {
+  overflow: visible !important;
+}
+
+/* Ensure section has visible overflow */
+.agents-section {
+  overflow: visible !important;
+}

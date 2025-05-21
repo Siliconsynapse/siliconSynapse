@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import './AIAgentCards.css';
+import './AIAgentCardsHoverFix.css';
 
 const AIAgentServices = ({ onAgentClick }) => {
   const agentContainerRef = useRef(null);
@@ -139,14 +140,14 @@ const AIAgentServices = ({ onAgentClick }) => {
   ];
 
   return (
-    <section id="ai-agents" className="py-5 agents-section" ref={agentContainerRef}>
+    <section id="ai-agents" className="py-5 agents-section" ref={agentContainerRef} style={{ overflow: 'visible' }}>
       <div className="section-background">
         <div className="gradient-sphere gradient-sphere-purple" style={{ top: '-100px', right: '10%' }}></div>
         <div className="gradient-sphere gradient-sphere-green" style={{ bottom: '5%', left: '-100px' }}></div>
         <div className="gradient-sphere gradient-sphere-blue" style={{ bottom: '40%', right: '20%' }}></div>
       </div>
       
-      <div className="container position-relative section-content">
+      <div className="container position-relative section-content" style={{ overflow: 'visible' }}>
         <div className="text-center mb-5 reveal-text">
           <span className="orbit-badge mb-3">Our AI Solutions</span>
           <h2 className="display-4 fw-bold mb-3 gradient-heading">AI Agents</h2>
@@ -155,12 +156,12 @@ const AIAgentServices = ({ onAgentClick }) => {
           </p>
         </div>
         
-        <div className="row g-4 justify-content-center" style={{ padding: '5px' }}>
+        <div className="row g-4 justify-content-center" style={{ padding: '5px', overflow: 'visible' }}>
           {aiAgents.map((agent, index) => (
             <div 
               key={index} 
               className="col-md-6 col-lg-4 mb-4"
-              style={{ padding: '10px' }}
+              style={{ padding: '10px', overflow: 'visible' }}
             >
               <div 
                 className={`modern-agent-card ${agent.color} ${isVisible ? 'fade-in' : ''}`} 

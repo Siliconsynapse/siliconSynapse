@@ -57,22 +57,20 @@
 
 /* Mobile logo adjustments */
 @media (max-width: 768px) {
-  .navbar-brand .logo-large {
-    display: none;
-  }
-
-  .navbar-brand .logo-small {
-    display: inline-block;
-    height: 45px;
-    width: auto;
+  .navbar {
+    padding: 0.8rem 0;
+    min-height: 70px;
   }
   
-  .navbar.scrolled .navbar-brand .logo-small {
-    height: 40px;
+  .navbar.scrolled {
+    padding: 0.6rem 0;
+    min-height: 65px;
   }
-
+  
   .navbar-brand {
-    margin-right: 15px;
+    margin-right: 10px;
+    min-height: 55px;
+    padding: 5px 0;
   }
   
   .navbar-nav .nav-link {
@@ -111,8 +109,19 @@
 }
 
 /* Animation for logo hover */
-.navbar-brand img:hover {
+.navbar-brand:hover {
   filter: drop-shadow(0 0 4px rgba(59, 130, 246, 0.5));
+}
+
+/* Ensure smooth transitions */
+.navbar, .navbar-brand, .navbar-nav, .nav-link, .logo-container, .logo-icon {
+  transition: all 0.4s ease-in-out;
+}
+
+/* Add padding to logo to prevent cutting off */
+.logo-with-padding {
+  padding: 3px 0;
+  margin: 2px 0;
 }
 
 /* If you have a .logo-container class, add: */

@@ -6,10 +6,10 @@ import './Navbar.css';
 const Navbar = ({ isAuthenticated, setIsAuthenticated }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const navigate = useNavigate();
-
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
+      // Using a slightly higher threshold to prevent flickering
+      setIsScrolled(window.scrollY > 80);
     };
 
     window.addEventListener('scroll', handleScroll);
@@ -20,12 +20,11 @@ const Navbar = ({ isAuthenticated, setIsAuthenticated }) => {
     setIsAuthenticated(false);
     navigate('/');
   };
-
   return (
     <nav className={`navbar navbar-expand-lg fixed-top ${isScrolled ? 'scrolled' : ''}`}>
       <div className="container">
         <Link to="/" className="navbar-brand">
-          <Logo size={isScrolled ? 'small' : 'default'} isScrolled={isScrolled} />
+          <Logo size={isScrolled ? 'small' : 'default'} isScrolled={isScrolled} className="logo-with-padding" />
         </Link>
         <button
           className="navbar-toggler"

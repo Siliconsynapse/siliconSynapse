@@ -45,6 +45,7 @@
   background: #09090f;
   position: relative;
   overflow-x: hidden;
+  overflow-y: visible; /* Allow vertical overflow for elements that need it */
   color: #f8fafc;
   padding-top: 76px; /* Add padding for fixed navbar */
 }
@@ -194,6 +195,8 @@ section {
   transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   margin-bottom: 1rem;
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  position: relative;
 }
 
 .service-card:hover {
