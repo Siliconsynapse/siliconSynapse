@@ -144,6 +144,8 @@
   z-index: 10;
   max-width: 1000px;
   margin: 0 auto;
+  padding-top: 50px; /* Add extra space at the top */
+  overflow: visible;
 }
 
 .tech-category {
@@ -176,6 +178,16 @@
               0 0 15px rgba(var(--category-color-rgb, 59, 130, 246), 0.2);
 }
 
+/* Special styling for the first category (AI Models) */
+.first-category {
+  padding-top: 35px;
+  margin-bottom: 10px;
+}
+
+.first-category.active .tech-detail.expanded {
+  margin-top: 40px;
+}
+
 .category-icon {
   width: 60px;
   height: 60px;
@@ -206,6 +218,9 @@
      linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
   mask-composite: exclude;
+  mask: 
+     linear-gradient(#fff 0 0) content-box, 
+     linear-gradient(#fff 0 0);
 }
 
 .category-info {
@@ -237,9 +252,17 @@
 }
 
 .tech-detail.expanded {
-  max-height: 400px;
+  height: auto;
+  max-height: 450px; /* Increased max-height */
   opacity: 1;
-  margin-top: 20px;
+  margin-top: 35px;
+  padding-top: 15px;
+  position: relative;
+  overflow: visible;
+  z-index: 100; /* Higher z-index to prevent cutoff */
+  transform-origin: top center;
+  transform: translateY(0);
+  will-change: transform, opacity;
 }
 
 .tech-grid {
@@ -248,6 +271,13 @@
   gap: 20px;
   padding-top: 20px;
   border-top: 1px solid rgba(255, 255, 255, 0.1);
+  position: relative;
+}
+
+/* Add more space for the first category's tech grid */
+.first-category .tech-grid {
+  padding-top: 30px;
+  margin-top: 10px;
 }
 
 .tech-card {
