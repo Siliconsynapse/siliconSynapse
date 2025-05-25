@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-router-dom'
+import { BrowserRouter as Router, Routes, Route, useNavigate, useLocation } from 'react-router-dom'
 import './App.css'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
@@ -9,6 +9,7 @@ import DynamicContent from './components/DynamicContent'
 import Footer from './components/Footer'
 import Login from './components/Login'
 import Chatbot from './components/Chatbot'
+import ResearchAssistant from './components/ResearchAssistant'
 
 function MainContent({ isAuthenticated, onServiceClick }) {
   return (
@@ -29,10 +30,17 @@ function AppContent() {
   const [showComingSoonModal, setShowComingSoonModal] = useState(false);
   const [selectedAgent, setSelectedAgent] = useState('');
   const navigate = useNavigate();
+  const location = useLocation();
 
   // Handler for service click
   const handleServiceClick = (service) => {
-    // Set the selected agent and show the modal
+    // For Research Assistant, navigate to the dedicated page
+    if (service === 'Research Assistant') {
+      navigate('/research-assistant');
+      return;
+    }
+    
+    // For all other services, show the coming soon modal
     setSelectedAgent(service);
     setShowComingSoonModal(true);
     // Store service info if needed for future reference
@@ -55,10 +63,13 @@ function AppContent() {
 
   return (
     <div className="app-wrapper" style={{ overflow: 'visible' }}>
-      <Navbar isAuthenticated={isAuthenticated} setIsAuthenticated={setIsAuthenticated} />
+      {location.pathname !== '/research-assistant' && 
+        <Navbar isAuthenticated={isAuthenticated} setIsAuthenticated={setIsAuthenticated} />
+      }
       <Routes>
         <Route path="/login" element={<Login onAuth={handleAuth} />} />
         <Route path="/" element={<MainContent isAuthenticated={isAuthenticated} onServiceClick={handleServiceClick} />} />
+        <Route path="/research-assistant" element={<ResearchAssistant />} />
       </Routes>
       <Chatbot />
       
