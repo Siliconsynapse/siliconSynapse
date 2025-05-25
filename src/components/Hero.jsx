@@ -58,7 +58,7 @@ const Hero = () => {
                     <h4>Cognitive Agents</h4>
                   </div>
                 </div>
-                <div className="position-absolute hero-card-wrapper" style={{ top: '32%', left: '65%' }}>
+                <div className="position-absolute hero-card-wrapper" style={{ top: '32%', left: '55%' }}>
                   <div className="service-card p-4">
                     <i className="fas fa-robot service-icon"></i>
                     <h4>Task Automation</h4>

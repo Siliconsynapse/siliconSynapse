@@ -106,7 +106,7 @@ const TechOrbit = () => {
             {techCategories.map((category, index) => (
               <div 
                 key={index}
-                className={`tech-category ${activeIndex === index ? 'active' : ''}`}
+                className={`tech-category ${activeIndex === index ? 'active' : ''} ${index === 0 ? 'first-category' : ''}`}
                 style={{ '--category-color': category.color }}
                 onClick={() => setActiveIndex(index === activeIndex ? null : index)}
               >
@@ -118,7 +118,7 @@ const TechOrbit = () => {
                   <p>{category.description}</p>
                 </div>
                 
-                <div className={`tech-detail ${activeIndex === index ? 'expanded' : ''}`}>
+                <div className={`tech-detail ${activeIndex === index ? 'expanded' : ''}`} style={{ overflow: 'visible', position: 'relative' }}>
                   <div className="tech-grid">
                     {category.technologies.map((tech, techIndex) => (
                       <div key={techIndex} className="tech-card" style={{ '--delay': `${techIndex * 0.1}s` }}>
