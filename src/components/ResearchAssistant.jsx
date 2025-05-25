@@ -18,15 +18,34 @@ const SUGGESTIONS = [
 ];
 
 export default function ResearchAssistant() {
-  const [messages, setMessages] = useState([INITIAL_SYSTEM_MESSAGE]);
+  // Create initial messages that will force scrolling
+  const initialMessages = [
+    INITIAL_SYSTEM_MESSAGE,
+    // Add empty hidden messages to force scrollbar to appear
+    ...Array(10).fill(0).map((_, i) => ({
+      id: 1000 + i,
+      role: 'hidden',
+      content: ''
+    }))
+  ];
+  
+  const [messages, setMessages] = useState(initialMessages);
   const [draft, setDraft] = useState('');
   const [loading, setLoading] = useState(false);
   const endRef = useRef(null);
   const inputRef = useRef(null);
+  const messagesContainerRef = useRef(null);
 
   /** Scroll to latest message */
   useEffect(() => {
-    endRef.current?.scrollIntoView({ behavior: 'smooth' });
+    if (endRef.current) {
+      endRef.current.scrollIntoView({ behavior: 'smooth' });
+      
+      // Force a second scroll after a slight delay (helps with some browsers)
+      setTimeout(() => {
+        endRef.current?.scrollIntoView({ behavior: 'auto' });
+      }, 100);
+    }
   }, [messages, loading]);
 
   /** Focus input on mount */
@@ -64,7 +83,7 @@ export default function ResearchAssistant() {
     <section className="ra__page">
       <div className="ra__card">
         {/* ------------- message list ------------- */}
-        <div className="ra__messages">
+        <div className="ra__messages" ref={messagesContainerRef}>
           {messages.map(m => (
             <MessageBubble key={m.id} {...m} />
           ))}
@@ -110,6 +129,11 @@ export default function ResearchAssistant() {
 /* ------------------------------------------------------------------ */
 /* --------------- tiny presentational helpers ---------------------- */
 function MessageBubble({ role, content }) {
+  // Handle hidden messages (used to force scrollbar)
+  if (role === 'hidden') {
+    return <div className="ra__row isHidden"></div>;
+  }
+  
   const isUser = role === 'user';
   /* convert line-breaks to <br> for basic formatting */
   const html = content.replace(/\n/g, '<br>');
