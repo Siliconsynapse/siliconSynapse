@@ -39,7 +39,8 @@ const AIAgentServices = ({ onAgentClick }) => {
         'Email campaign content',
         'Social media captions'
       ],
-      color: 'blue'
+      color: 'blue',
+      status: 'Coming Soon'
     },
     {
       icon: 'fa-search',
@@ -51,7 +52,8 @@ const AIAgentServices = ({ onAgentClick }) => {
         'Source verification',
         'Summary generation'
       ],
-      color: 'yellow'
+      color: 'yellow',
+      status: 'Ready'
     },
     {
       icon: 'fa-chart-line',
@@ -63,7 +65,8 @@ const AIAgentServices = ({ onAgentClick }) => {
         'Investment recommendations',
         'Industry reports'
       ],
-      color: 'purple'
+      color: 'purple',
+      status: 'Coming Soon'
     },
     {
       icon: 'fa-comments',
@@ -75,7 +78,8 @@ const AIAgentServices = ({ onAgentClick }) => {
         'Ticket creation & routing',
         'Personalized responses'
       ],
-      color: 'green'
+      color: 'green',
+      status: 'Coming Soon'
     },
     {
       icon: 'fa-code',
@@ -87,7 +91,8 @@ const AIAgentServices = ({ onAgentClick }) => {
         'Code optimization',
         'Documentation assistance'
       ],
-      color: 'indigo'
+      color: 'indigo',
+      status: 'Coming Soon'
     },
     {
       icon: 'fa-language',
@@ -99,7 +104,8 @@ const AIAgentServices = ({ onAgentClick }) => {
         'Cultural adaptation',
         '100+ languages supported'
       ],
-      color: 'orange'
+      color: 'orange',
+      status: 'Coming Soon'
     },
     {
       icon: 'fa-tasks',
@@ -111,7 +117,8 @@ const AIAgentServices = ({ onAgentClick }) => {
         'Progress monitoring',
         'Risk identification'
       ],
-      color: 'red'
+      color: 'red',
+      status: 'Coming Soon'
     },
     {
       icon: 'fa-images',
@@ -123,7 +130,8 @@ const AIAgentServices = ({ onAgentClick }) => {
         'Style adaptation',
         'Brand consistency'
       ],
-      color: 'pink'
+      color: 'pink',
+      status: 'Coming Soon'
     },
     {
       icon: 'fa-file-alt',
@@ -135,7 +143,8 @@ const AIAgentServices = ({ onAgentClick }) => {
         'ATS compatibility check',
         'Industry-specific recommendations'
       ],
-      color: 'teal'
+      color: 'teal',
+      status: 'Coming Soon'
     }
   ];
 

@@ -81,20 +81,28 @@
 
 /* Status indicator for ready-to-deploy */
 .modern-agent-card::after {
-  content: 'Ready';
+  content: 'Coming Soon';
   position: absolute;
   top: 1rem;
   right: 1rem;
   font-size: 0.7rem;
   font-weight: 600;
-  color: #10b981;
-  background: rgba(16, 185, 129, 0.1);
+  color: #ffaa00;
+  background: rgba(255, 170, 0, 0.15);
   padding: 0.25rem 0.5rem;
   border-radius: 20px;
-  border: 1px solid rgba(16, 185, 129, 0.3);
-  opacity: 0;
-  transform: translateY(-10px);
+  border: 1px solid rgba(255, 170, 0, 0.3);
+  opacity: 1;
+  transform: translateY(0);
   transition: all 0.3s ease;
+}
+
+/* Only Research Assistant card shows Ready status */
+.modern-agent-card.yellow::after {
+  content: 'Ready';
+  color: #10b981;
+  background: rgba(16, 185, 129, 0.1);
+  border: 1px solid rgba(16, 185, 129, 0.3);
 }
 
 .modern-agent-card:hover::after {
@@ -668,4 +676,27 @@
 
 .action-btn:hover i {
   transform: translateX(3px) !important;
+}
+
+/* Status Badge Styles */
+.status-badge {
+  display: inline-block;
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.status-ready {
+  background-color: rgba(16, 185, 129, 0.15);
+  color: #10b981;
+  border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+.status-coming-soon {
+  background-color: rgba(255, 170, 0, 0.15);
+  color: #ffaa00;
+  border: 1px solid rgba(255, 170, 0, 0.3);
 }
