@@ -42,16 +42,16 @@ const AIAgentServices = ({ onAgentClick }) => {
       color: 'blue'
     },
     {
-      icon: 'fa-file-alt',
-      title: 'Resume ATS Optimizer',
-      description: 'Improve your resume\'s performance through our ATS Optimizer agent, designed to increase visibility with hiring managers.',
+      icon: 'fa-search',
+      title: 'Research Assistant',
+      description: 'Accelerate your research with our comprehensive research agent that gathers, analyzes, and summarizes information.',
       features: [
-        'Keyword optimization',
-        'Format customization',
-        'ATS compatibility check',
-        'Industry-specific recommendations'
+        'Literature review',
+        'Data gathering',
+        'Source verification',
+        'Summary generation'
       ],
-      color: 'teal'
+      color: 'yellow'
     },
     {
       icon: 'fa-chart-line',
@@ -126,16 +126,16 @@ const AIAgentServices = ({ onAgentClick }) => {
       color: 'pink'
     },
     {
-      icon: 'fa-search',
-      title: 'Research Assistant',
-      description: 'Accelerate your research with our comprehensive research agent that gathers, analyzes, and summarizes information.',
+      icon: 'fa-file-alt',
+      title: 'Resume ATS Optimizer',
+      description: 'Improve your resume\'s performance through our ATS Optimizer agent, designed to increase visibility with hiring managers.',
       features: [
-        'Literature review',
-        'Data gathering',
-        'Source verification',
-        'Summary generation'
+        'Keyword optimization',
+        'Format customization',
+        'ATS compatibility check',
+        'Industry-specific recommendations'
       ],
-      color: 'yellow'
+      color: 'teal'
     }
   ];
 
