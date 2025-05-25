@@ -1,5 +1,11 @@
 import { useState, useEffect, useRef } from 'react';
 import './ResearchAssistant.css';
+// Import ReactMarkdown for rendering markdown content
+// Note: You need to install it with: npm install react-markdown
+import ReactMarkdown from 'react-markdown';
+
+// API base URL for the Research Assistant
+const API_BASE_URL = 'https://researchagent-h71u.onrender.com';
 
 const INITIAL_SYSTEM_MESSAGE = {
   id: 1,
@@ -32,6 +38,9 @@ export default function ResearchAssistant() {
   const [messages, setMessages] = useState(initialMessages);
   const [draft, setDraft] = useState('');
   const [loading, setLoading] = useState(false);
+  const [conversationId, setConversationId] = useState(null);
+  const [apiStatus, setApiStatus] = useState(null);
+  const [error, setError] = useState(null);
   const endRef = useRef(null);
   const inputRef = useRef(null);
   const messagesContainerRef = useRef(null);
@@ -53,8 +62,25 @@ export default function ResearchAssistant() {
     inputRef.current?.focus();
   }, []);
 
+  // Fetch API status on component mount
+  useEffect(() => {
+    const fetchApiStatus = async () => {
+      try {
+        const response = await fetch(`${API_BASE_URL}/api-status`);
+        if (!response.ok) throw new Error('Failed to fetch API status');
+        const data = await response.json();
+        setApiStatus(data);
+      } catch (err) {
+        console.error('Error fetching API status:', err);
+        setError('Could not connect to Research Assistant API');
+      }
+    };
+    
+    fetchApiStatus();
+  }, []);
+
   /* ------------------------------------------------------------------ */
-  const handleSubmit = e => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (!draft.trim()) return;
 
@@ -62,17 +88,58 @@ export default function ResearchAssistant() {
     setMessages(prev => [...prev, userMsg]);
     setDraft('');
     setLoading(true);
+    setError(null);
 
-    /* Simulate network call */
-    setTimeout(() => {
+    try {
+      const response = await fetch(`${API_BASE_URL}/chat`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          message: draft,
+          conversation_id: conversationId,
+          model: 'openai' // Default to OpenAI, could be made configurable
+        })
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to get response from Research Assistant');
+      }
+
+      const data = await response.json();
+      
+      // Save conversation ID for continuing the conversation
+      if (data.conversation_id && !conversationId) {
+        setConversationId(data.conversation_id);
+      }
+
+      // Extract assistant's message from the response
+      const lastMessage = data.messages ? 
+        data.messages[data.messages.length - 1] : 
+        { role: 'assistant', content: 'I received your message but encountered an issue processing it.' };
+      
       const assistantMsg = {
         id: Date.now() + 1,
         role: 'assistant',
-        content: `I'll research “${draft}” for you.\n\nBased on the latest academic literature:\n• The topic has seen significant development in recent years.\n• Key innovations include advanced methodologies and cross-disciplinary approaches.\n• Current challenges remain in implementation and scaling.\n\nWould you like me to provide more specific information about any aspect?`
+        content: lastMessage.content
       };
+      
       setMessages(prev => [...prev, assistantMsg]);
+    } catch (err) {
+      console.error('Error communicating with Research Assistant:', err);
+      setError('Failed to communicate with the Research Assistant. Please try again.');
+      
+      // Add error message to chat
+      const errorMsg = {
+        id: Date.now() + 1,
+        role: 'assistant',
+        content: 'Sorry, I encountered an error while processing your request. Please try again.'
+      };
+      setMessages(prev => [...prev, errorMsg]);
+    } finally {
       setLoading(false);
-    }, 1500);
+    }
   };
 
   const handleKey = e => {
@@ -82,6 +149,12 @@ export default function ResearchAssistant() {
   return (
     <section className="ra__page">
       <div className="ra__card">
+        {error && (
+          <div className="ra__error">
+            <i className="fas fa-exclamation-circle"></i> {error}
+          </div>
+        )}
+        
         {/* ------------- message list ------------- */}
         <div className="ra__messages" ref={messagesContainerRef}>
           {messages.map(m => (
@@ -135,8 +208,7 @@ function MessageBubble({ role, content }) {
   }
   
   const isUser = role === 'user';
-  /* convert line-breaks to <br> for basic formatting */
-  const html = content.replace(/\n/g, '<br>');
+  
   return (
     <div className={`ra__row ${isUser ? 'isUser' : 'isBot'}`}>
       {!isUser && (
@@ -144,10 +216,17 @@ function MessageBubble({ role, content }) {
           <i className="fas fa-search" />
         </span>
       )}
-      <p
-        className={`ra__bubble ${isUser ? 'userBubble' : 'botBubble'}`}
-        dangerouslySetInnerHTML={{ __html: html }}
-      />
+      <div className={`ra__bubble ${isUser ? 'userBubble' : 'botBubble'}`}>
+        {isUser ? (
+          // For user messages, simple text display
+          <p>{content}</p>
+        ) : (
+          // For bot messages, render markdown
+          <div className="markdown-content">
+            <ReactMarkdown>{content}</ReactMarkdown>
+          </div>
+        )}
+      </div>
     </div>
   );
 }

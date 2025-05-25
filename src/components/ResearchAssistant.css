@@ -26,6 +26,7 @@
   right: 0;
   bottom: 0;
   overflow: hidden;
+  z-index: 1000;
 }
 
 /* "glass" card that holds everything */
@@ -42,6 +43,24 @@
   margin-top: 20px;
   height: calc(100vh - 40px); /* Full height minus top margin */
   max-height: calc(100vh - 40px);
+}
+
+/* Error message styling */
+.ra__error {
+  background-color: rgba(220, 38, 38, 0.1);
+  color: #ef4444;
+  padding: 0.75rem 1rem;
+  margin: 0.5rem;
+  border-radius: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  border: 1px solid rgba(220, 38, 38, 0.2);
+}
+
+.ra__error i {
+  font-size: 1rem;
 }
 
 /* ===============  Messages  =============== */
@@ -125,6 +144,87 @@
   word-break: break-word;
   animation: fadeIn .25s ease-out;
   font-size: 0.9375rem;        /* 15px */
+}
+
+/* Markdown content styling */
+.markdown-content {
+  width: 100%;
+}
+
+.markdown-content h1 {
+  font-size: 1.5rem;
+  margin-top: 1.5rem;
+  margin-bottom: 0.75rem;
+  font-weight: 600;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding-bottom: 0.5rem;
+}
+
+.markdown-content h2 {
+  font-size: 1.25rem;
+  margin-top: 1.25rem;
+  margin-bottom: 0.75rem;
+  font-weight: 600;
+}
+
+.markdown-content h3 {
+  font-size: 1.125rem;
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+
+.markdown-content p {
+  margin-bottom: 0.75rem;
+}
+
+.markdown-content ul, 
+.markdown-content ol {
+  margin-left: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.markdown-content li {
+  margin-bottom: 0.25rem;
+}
+
+.markdown-content code {
+  background-color: rgba(0, 0, 0, 0.2);
+  padding: 0.125rem 0.25rem;
+  border-radius: 0.25rem;
+  font-family: monospace;
+  font-size: 0.875rem;
+}
+
+.markdown-content pre {
+  background-color: rgba(0, 0, 0, 0.2);
+  padding: 1rem;
+  border-radius: 0.5rem;
+  overflow-x: auto;
+  margin: 1rem 0;
+}
+
+.markdown-content pre code {
+  background-color: transparent;
+  padding: 0;
+  font-size: 0.875rem;
+}
+
+.markdown-content a {
+  color: var(--accent-1);
+  text-decoration: underline;
+}
+
+.markdown-content a:hover {
+  text-decoration: none;
+}
+
+.markdown-content blockquote {
+  border-left: 3px solid var(--accent-2);
+  padding-left: 1rem;
+  margin: 1rem 0;
+  color: rgba(255, 255, 255, 0.8);
+  font-style: italic;
 }
 .userBubble {
   background: linear-gradient(135deg, var(--accent-1), var(--accent-2));
