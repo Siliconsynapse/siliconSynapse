@@ -39,91 +39,8 @@ const AIAgentServices = ({ onAgentClick }) => {
         'Email campaign content',
         'Social media captions'
       ],
-      color: 'blue'
-    },
-    {
-      icon: 'fa-file-alt',
-      title: 'Resume ATS Optimizer',
-      description: 'Improve your resume\'s performance through our ATS Optimizer agent, designed to increase visibility with hiring managers.',
-      features: [
-        'Keyword optimization',
-        'Format customization',
-        'ATS compatibility check',
-        'Industry-specific recommendations'
-      ],
-      color: 'teal'
-    },
-    {
-      icon: 'fa-chart-line',
-      title: 'Market Analyst',
-      description: 'Leverage our market analysis agent to gain actionable insights and forecasts based on real-time market data.',
-      features: [
-        'Trend forecasting',
-        'Competitive analysis',
-        'Investment recommendations',
-        'Industry reports'
-      ],
-      color: 'purple'
-    },
-    {
-      icon: 'fa-comments',
-      title: 'Customer Support Bot',
-      description: 'Deploy our intelligent virtual assistant to handle customer inquiries, resolve issues, and enhance customer satisfaction.',
-      features: [
-        '24/7 automated support',
-        'Multi-language capabilities',
-        'Ticket creation & routing',
-        'Personalized responses'
-      ],
-      color: 'green'
-    },
-    {
-      icon: 'fa-code',
-      title: 'Code Assistant',
-      description: 'Boost your development team with our AI coding assistant to generate code, debug issues, and improve code quality.',
-      features: [
-        'Code generation',
-        'Bug detection',
-        'Code optimization',
-        'Documentation assistance'
-      ],
-      color: 'indigo'
-    },
-    {
-      icon: 'fa-language',
-      title: 'Language Translator',
-      description: 'Access our advanced translation agent for accurately translating content while preserving context, tone, and cultural nuances.',
-      features: [
-        'Real-time translation',
-        'Document translation',
-        'Cultural adaptation',
-        '100+ languages supported'
-      ],
-      color: 'orange'
-    },
-    {
-      icon: 'fa-tasks',
-      title: 'Project Manager',
-      description: 'Optimize your workflow with our AI project management assistant to track progress, identify issues, and meet deadlines.',
-      features: [
-        'Task scheduling',
-        'Resource allocation',
-        'Progress monitoring',
-        'Risk identification'
-      ],
-      color: 'red'
-    },
-    {
-      icon: 'fa-images',
-      title: 'Visual Designer',
-      description: 'Create professional visual assets with our AI design agent that generates images and graphics based on your requirements.',
-      features: [
-        'Image generation',
-        'Design customization',
-        'Style adaptation',
-        'Brand consistency'
-      ],
-      color: 'pink'
+      color: 'blue',
+      status: 'Coming Soon'
     },
     {
       icon: 'fa-search',
@@ -135,7 +52,99 @@ const AIAgentServices = ({ onAgentClick }) => {
         'Source verification',
         'Summary generation'
       ],
-      color: 'yellow'
+      color: 'yellow',
+      status: 'Ready'
+    },
+    {
+      icon: 'fa-chart-line',
+      title: 'Market Analyst',
+      description: 'Leverage our market analysis agent to gain actionable insights and forecasts based on real-time market data.',
+      features: [
+        'Trend forecasting',
+        'Competitive analysis',
+        'Investment recommendations',
+        'Industry reports'
+      ],
+      color: 'purple',
+      status: 'Coming Soon'
+    },
+    {
+      icon: 'fa-comments',
+      title: 'Customer Support Bot',
+      description: 'Deploy our intelligent virtual assistant to handle customer inquiries, resolve issues, and enhance customer satisfaction.',
+      features: [
+        '24/7 automated support',
+        'Multi-language capabilities',
+        'Ticket creation & routing',
+        'Personalized responses'
+      ],
+      color: 'green',
+      status: 'Coming Soon'
+    },
+    {
+      icon: 'fa-code',
+      title: 'Code Assistant',
+      description: 'Boost your development team with our AI coding assistant to generate code, debug issues, and improve code quality.',
+      features: [
+        'Code generation',
+        'Bug detection',
+        'Code optimization',
+        'Documentation assistance'
+      ],
+      color: 'indigo',
+      status: 'Coming Soon'
+    },
+    {
+      icon: 'fa-language',
+      title: 'Language Translator',
+      description: 'Access our advanced translation agent for accurately translating content while preserving context, tone, and cultural nuances.',
+      features: [
+        'Real-time translation',
+        'Document translation',
+        'Cultural adaptation',
+        '100+ languages supported'
+      ],
+      color: 'orange',
+      status: 'Coming Soon'
+    },
+    {
+      icon: 'fa-tasks',
+      title: 'Project Manager',
+      description: 'Optimize your workflow with our AI project management assistant to track progress, identify issues, and meet deadlines.',
+      features: [
+        'Task scheduling',
+        'Resource allocation',
+        'Progress monitoring',
+        'Risk identification'
+      ],
+      color: 'red',
+      status: 'Coming Soon'
+    },
+    {
+      icon: 'fa-images',
+      title: 'Visual Designer',
+      description: 'Create professional visual assets with our AI design agent that generates images and graphics based on your requirements.',
+      features: [
+        'Image generation',
+        'Design customization',
+        'Style adaptation',
+        'Brand consistency'
+      ],
+      color: 'pink',
+      status: 'Coming Soon'
+    },
+    {
+      icon: 'fa-file-alt',
+      title: 'Resume ATS Optimizer',
+      description: 'Improve your resume\'s performance through our ATS Optimizer agent, designed to increase visibility with hiring managers.',
+      features: [
+        'Keyword optimization',
+        'Format customization',
+        'ATS compatibility check',
+        'Industry-specific recommendations'
+      ],
+      color: 'teal',
+      status: 'Coming Soon'
     }
   ];
 
