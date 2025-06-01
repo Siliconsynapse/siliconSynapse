@@ -44,11 +44,14 @@
 /* Card hover state padding to make room for elevated icon */
 .modern-agent-card:hover {
   padding-top: 2rem !important;
+  padding-right: 2.25rem !important; /* Extra padding on right side to prevent cutoff */
 }
 
 /* Make the row have proper overflow handling */
 .row.g-4 {
   overflow: visible !important;
+  padding: 15px !important; /* Add padding around the entire row */
+  margin-right: 10px !important; /* Extra right margin to prevent cutoff */
 }
 
 /* Ensure proper spacing between card content sections */
@@ -108,7 +111,6 @@
   position: relative;
   z-index: 5;
   flex: 1;
-}
 }
 
 /* Ensure the hover transform doesn't affect the icon visibility */

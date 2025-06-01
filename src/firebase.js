@@ -3,12 +3,12 @@ import { initializeApp } from 'firebase/app';
 import { getAuth, GoogleAuthProvider } from 'firebase/auth';
 
 const firebaseConfig = {
-  apiKey: 'YOUR_API_KEY',
-  authDomain: 'YOUR_AUTH_DOMAIN',
-  projectId: 'YOUR_PROJECT_ID',
-  storageBucket: 'YOUR_STORAGE_BUCKET',
-  messagingSenderId: 'YOUR_MESSAGING_SENDER_ID',
-  appId: 'YOUR_APP_ID',
+ apiKey: "AIzaSyCYAU2DBR-ahDc6Q79n77saUHZM24r-eo8",
+  authDomain: "siliconsynapse.firebaseapp.com",
+  projectId: "siliconsynapse",
+  storageBucket: "siliconsynapse.firebasestorage.app",
+  messagingSenderId: "881070098384",
+  appId: "1:881070098384:web:a8ad5bb2e11b626dbb1bd5",
 };
 
 const app = initializeApp(firebaseConfig);

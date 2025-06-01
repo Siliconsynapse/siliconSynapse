@@ -77,11 +77,12 @@
   margin: 15px 0;
   /* Added clip-path: none to prevent any cutoff */
   clip-path: none;
+  /* Extra padding to prevent right cutoff */
+  padding-right: 2rem;
 }
 
-/* Status indicator for ready-to-deploy */
-.modern-agent-card::after {
-  content: 'Coming Soon';
+/* Status indicator for cards */
+.agent-status {
   position: absolute;
   top: 1rem;
   right: 1rem;
@@ -95,11 +96,11 @@
   opacity: 1;
   transform: translateY(0);
   transition: all 0.3s ease;
+  z-index: 10; /* Higher z-index to ensure visibility */
 }
 
-/* Only Research Assistant card shows Ready status */
-.modern-agent-card.yellow::after {
-  content: 'Ready';
+/* Ready status has different styling */
+.modern-agent-card.yellow .agent-status {
   color: #10b981;
   background: rgba(16, 185, 129, 0.1);
   border: 1px solid rgba(16, 185, 129, 0.3);
@@ -199,6 +200,7 @@
   height: 64px;
   border-radius: 16px;
   display: flex;
+  margin-top: 10px; /* Added margin to prevent top cutoff */;
   align-items: center;
   justify-content: center;
   font-size: 1.6rem;

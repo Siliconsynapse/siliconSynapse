@@ -1,8 +1,11 @@
 import { useState, useEffect, useRef } from 'react';
 import './ResearchAssistant.css';
-// Import ReactMarkdown for rendering markdown content
-// Note: You need to install it with: npm install react-markdown
+// Import ReactMarkdown and enhancements for better rendering
 import ReactMarkdown from 'react-markdown';
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
+import { coldarkDark } from 'react-syntax-highlighter/dist/esm/styles/prism';
+import remarkGfm from 'remark-gfm';
+import rehypeRaw from 'rehype-raw';
 
 // API base URL for the Research Assistant
 const API_BASE_URL = 'https://researchagent-h71u.onrender.com';
@@ -24,11 +27,11 @@ const SUGGESTIONS = [
 ];
 
 export default function ResearchAssistant() {
-  // Create initial messages that will force scrolling
+  // Create initial messages with just the welcome message
   const initialMessages = [
     INITIAL_SYSTEM_MESSAGE,
-    // Add empty hidden messages to force scrollbar to appear
-    ...Array(10).fill(0).map((_, i) => ({
+    // Add only a few hidden messages, not enough to force scrolling past welcome
+    ...Array(3).fill(0).map((_, i) => ({
       id: 1000 + i,
       role: 'hidden',
       content: ''
@@ -45,9 +48,19 @@ export default function ResearchAssistant() {
   const inputRef = useRef(null);
   const messagesContainerRef = useRef(null);
 
-  /** Scroll to latest message */
+  /** Scroll to latest message only when messages change, not on initial render */
+  const initialRender = useRef(true);
+  
   useEffect(() => {
-    if (endRef.current) {
+    // Skip scrolling on initial render to ensure welcome message is visible
+    if (initialRender.current) {
+      initialRender.current = false;
+      return;
+    }
+    
+    // Only scroll if there are actual messages (non-hidden ones)
+    if (endRef.current && messages.some(m => m.role !== 'hidden')) {
+      // Only scroll smoothly when a new message is added (not on first load)
       endRef.current.scrollIntoView({ behavior: 'smooth' });
       
       // Force a second scroll after a slight delay (helps with some browsers)
@@ -57,9 +70,14 @@ export default function ResearchAssistant() {
     }
   }, [messages, loading]);
 
-  /** Focus input on mount */
+  /** Focus input on mount and ensure we're scrolled to top to see welcome message */
   useEffect(() => {
     inputRef.current?.focus();
+    
+    // Ensure the messages container is scrolled to the top when component mounts
+    if (messagesContainerRef.current) {
+      messagesContainerRef.current.scrollTop = 0;
+    }
   }, []);
 
   // Fetch API status on component mount
@@ -146,9 +164,21 @@ export default function ResearchAssistant() {
     if (e.key === 'Escape') setDraft('');
   };
 
+  // Function to handle navigation back
+  const handleGoBack = () => {
+    // Use window.history to navigate back
+    window.history.back();
+  };
+
   return (
     <section className="ra__page">
       <div className="ra__card">
+        <div className="ra__header">
+          <button onClick={handleGoBack} className="ra__back-button">
+            <i className="fas fa-arrow-left"></i>
+            <span>Back</span>
+          </button>
+        </div>
         {error && (
           <div className="ra__error">
             <i className="fas fa-exclamation-circle"></i> {error}
@@ -201,29 +231,82 @@ export default function ResearchAssistant() {
 
 /* ------------------------------------------------------------------ */
 /* --------------- tiny presentational helpers ---------------------- */
+// Updated avatar styling and improved spacing for message bubbles
 function MessageBubble({ role, content }) {
-  // Handle hidden messages (used to force scrollbar)
   if (role === 'hidden') {
     return <div className="ra__row isHidden"></div>;
   }
-  
+
   const isUser = role === 'user';
-  
+
+  const renderers = {
+    code({ node, inline, className, children, ...props }) {
+      const match = /language-(\w+)/.exec(className || '');
+      return !inline && match ? (
+        <SyntaxHighlighter
+          style={coldarkDark}
+          language={match[1]}
+          PreTag="div"
+          wrapLines={true}
+          showLineNumbers={true}
+          {...props}
+        >
+          {String(children).replace(/\n$/, '')}
+        </SyntaxHighlighter>
+      ) : (
+        <code className={className} {...props}>
+          {children}
+        </code>
+      );
+    },
+    a: ({ node, ...props }) => (
+      <a target="_blank" rel="noopener noreferrer" className="ra__link" {...props} />
+    ),
+    li: ({ node, ordered, ...props }) => (
+      <li className="ra__list-item" {...props}>
+        <span className="ra__list-bullet">{ordered ? `${node.index + 1}.` : '•'}</span>
+        <span className="ra__list-content">{props.children}</span>
+      </li>
+    ),
+    p: ({ children, ...props }) => (
+      <p className="ra__paragraph" {...props}>{children}</p>
+    ),
+    h1: ({ children, ...props }) => (
+      <h1 className="ra__heading ra__heading-1" {...props}>{children}</h1>
+    ),
+    h2: ({ children, ...props }) => (
+      <h2 className="ra__heading ra__heading-2" {...props}>{children}</h2>
+    ),
+    h3: ({ children, ...props }) => (
+      <h3 className="ra__heading ra__heading-3" {...props}>{children}</h3>
+    ),
+    ol: ({ children, ...props }) => (
+      <ol className="ra__ordered-list" {...props}>{children}</ol>
+    ),
+    ul: ({ children, ...props }) => (
+      <ul className="ra__unordered-list" {...props}>{children}</ul>
+    )
+  };
+
   return (
     <div className={`ra__row ${isUser ? 'isUser' : 'isBot'}`}>
       {!isUser && (
         <span className="ra__avatar">
-          <i className="fas fa-search" />
+          <i className="fas fa-robot" />
         </span>
       )}
       <div className={`ra__bubble ${isUser ? 'userBubble' : 'botBubble'}`}>
         {isUser ? (
-          // For user messages, simple text display
           <p>{content}</p>
         ) : (
-          // For bot messages, render markdown
           <div className="markdown-content">
-            <ReactMarkdown>{content}</ReactMarkdown>
+            <ReactMarkdown
+              remarkPlugins={[remarkGfm]}
+              rehypePlugins={[rehypeRaw]}
+              components={renderers}
+            >
+              {content}
+            </ReactMarkdown>
           </div>
         )}
       </div>
