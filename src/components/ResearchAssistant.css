@@ -211,13 +211,16 @@
 }
 
 .markdown-content p {
-  margin-bottom: 0.75rem;
+  margin-bottom: 0.25rem;
 }
 
-.markdown-content ul, 
+.markdown-content ul,
 .markdown-content ol {
-  margin-left: 2rem;
+  margin-top: 0.25rem;
+  margin-left: 0; /* Align list with preceding text */
+  padding-left: 0; /* Remove default browser padding */
   margin-bottom: 1.5rem;
+  list-style-type: none; /* Remove default list bullets/numbers */
 }
 
 .markdown-content li {
