@@ -26,22 +26,8 @@ const AIAgentServices = ({ onAgentClick }) => {
       }
     };
   }, []);
-
   // Available AI agents that we offer
   const aiAgents = [
-    {
-      icon: 'fa-pencil-alt',
-      title: 'Content Creator',
-      description: 'Access our content creation agent to generate engaging blog posts, articles, and marketing copy for your brand.',
-      features: [
-        'SEO-optimized blog posts',
-        'Marketing copy generation',
-        'Email campaign content',
-        'Social media captions'
-      ],
-      color: 'blue',
-      status: 'Coming Soon'
-    },
     {
       icon: 'fa-search',
       title: 'Research Assistant',
@@ -54,6 +40,19 @@ const AIAgentServices = ({ onAgentClick }) => {
       ],
       color: 'yellow',
       status: 'Ready'
+    },
+    {
+      icon: 'fa-pencil-alt',
+      title: 'Content Creator',
+      description: 'Access our content creation agent to generate engaging blog posts, articles, and marketing copy for your brand.',
+      features: [
+        'SEO-optimized blog posts',
+        'Marketing copy generation',
+        'Email campaign content',
+        'Social media captions'
+      ],
+      color: 'blue',
+      status: 'Coming Soon'
     },
     {
       icon: 'fa-chart-line',
@@ -171,12 +170,13 @@ const AIAgentServices = ({ onAgentClick }) => {
               key={index} 
               className="col-md-6 col-lg-4 mb-4"
               style={{ padding: '10px', overflow: 'visible' }}
-            >
-              <div 
+            >              <div 
                 className={`modern-agent-card ${agent.color} ${isVisible ? 'fade-in' : ''}`} 
                 style={{'--animation-order': index}}
+                data-status={agent.status} /* Added data attribute for status */
               >
                 <div className="agent-glow"></div>
+                <div className="agent-status">{agent.status}</div>
                 <div className="agent-icon-container">
                   <div className="agent-icon-wrapper">
                     <i className={`fas ${agent.icon}`}></i>
