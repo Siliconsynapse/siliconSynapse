@@ -146,9 +146,21 @@ export default function ResearchAssistant() {
     if (e.key === 'Escape') setDraft('');
   };
 
+  // Function to handle navigation back
+  const handleGoBack = () => {
+    // Use window.history to navigate back
+    window.history.back();
+  };
+
   return (
     <section className="ra__page">
       <div className="ra__card">
+        <div className="ra__header">
+          <button onClick={handleGoBack} className="ra__back-button">
+            <i className="fas fa-arrow-left"></i>
+            <span>Back</span>
+          </button>
+        </div>
         {error && (
           <div className="ra__error">
             <i className="fas fa-exclamation-circle"></i> {error}
